@@ -33,3 +33,7 @@ while 1:
     spoof(target, router)
     spoof(router, target)
     time.sleep(2)#Задержка отправки пакетов 
+
+
+
+=DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
