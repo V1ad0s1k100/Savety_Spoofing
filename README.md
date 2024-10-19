@@ -1,5 +1,6 @@
 Из этого плэйлиста мы берем код для реализации arp спуфинга ---->
 https://www.youtube.com/playlist?list=PLRx6edaDtIBXktbZ-GAhUCTst_O8VX4hy
+
 Документация по библиотеке Scapy ---->
 https://scapy.readthedocs.io/en/latest/index.html
 ДЛЯ ЗАЩИТЫ БУДЕМ ИСПОЛЬЗОВАТЬ БИБЛИОТЕКУ SCAPY
