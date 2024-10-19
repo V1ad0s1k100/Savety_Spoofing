@@ -4,7 +4,7 @@ from scapy.layers import http
 #pip install scapy_http
 
 print('Выберите протокол, по которому будут фильтроваться данные')
-filter_sniff = str(input('(прим. udp -> 1, tcp ->2, arp -> 3, port -> port <number>): ')) #Выбор протокола или порта для прослушивания 
+filter_sniff = str(input('(прим. udp -> 1, tcp -> 2, arp -> 3, port -> port <number>): ')) #Выбор протокола или порта для прослушивания 
 if filter_sniff == '1':
     filter_sniff = 'udp'
 if filter_sniff == '2':
@@ -14,7 +14,6 @@ if filter_sniff == '3':
 
 def sniff(interface):
     scapy.sniff(iface = interface, store = False, prn = process_sniffed_packet)
-
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest): #Отбираем пакеты с http
         url = packet[http.HTTPRequest].Host + packet[http.HTTPRequest].Path #Совмещаем первую и вторую часть url 
