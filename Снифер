@@ -16,8 +16,8 @@ def sniff(interface):
     scapy.sniff(iface = interface, store = False, prn = process_sniffed_packet)
 
 def process_sniffed_packet(packet):
-    if packet.haslayer(http.HTTPREQUEST): #Отбираем пакеты с http
-        url = packet[http.HTTPREQUEST].Host + packet[http.HTTPREQUEST].Path #Совмещаем первую и вторую часть url 
+    if packet.haslayer(http.HTTPRequest): #Отбираем пакеты с http
+        url = packet[http.HTTPRequest].Host + packet[http.HTTPRequest].Path #Совмещаем первую и вторую часть url 
         print(url) #Просматриваем url адреса
         if packet.haslayer(scapy.Raw): 
             load = packet[scapy.Raw].load 
