@@ -1,5 +1,5 @@
 import scapy.all as scapy
-from scapu.layers import http
+from scapy.layers import http
 
 #pip install scapy_http
 
@@ -27,4 +27,4 @@ def process_sniffed_packet(packet):
                 if keyword in load:
                     print(load)
                     break
-sniff('eth0')
+sniff('wlan0')
