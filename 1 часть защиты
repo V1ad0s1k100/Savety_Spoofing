@@ -1,0 +1,16 @@
+import scapy.all as scapy
+import time
+
+ip_gateway = scapy.conf.route.route("0.0.0.0")[2] 
+mac_gateway = scapy.getmacbyip(ip_gateway)
+list_users = []
+print(ip_gateway, mac_gateway)
+
+def scan(ip):   
+    arp_request_broadcast = (scapy.Ether(dst="ff:ff:ff:ff:ff:ff")) / (scapy.ARP(str(ip)+'/24')) 
+    return scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[0]
+
+def break_network():
+    print('ваня лох')
+
+print(scan(ip_gateway))
