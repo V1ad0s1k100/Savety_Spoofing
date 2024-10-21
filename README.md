@@ -1,3 +1,8 @@
+Клиентское устройство отключается от сети Wi-Fi при отправке пакета деаутентификации, имитируя незаконное отключение.
+
+Статья с деаунтификацией в сети ---->
+https://www.geeksforgeeks.org/how-to-disconnect-devices-from-wi-fi-using-scapy-in-python/
+
 Из этого плэйлиста мы берем код для реализации arp спуфинга ---->
 https://www.youtube.com/playlist?list=PLRx6edaDtIBXktbZ-GAhUCTst_O8VX4hy
 
