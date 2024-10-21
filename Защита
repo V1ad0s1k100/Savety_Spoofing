@@ -1,35 +1,3 @@
-import scapy.all as scapy
-import time
-
-ip_gateway = scapy.conf.route.route("0.0.0.0")[2] 
-mac_gateway = scapy.getmacbyip(ip_gateway)
-list_users = []
-print(ip_gateway, mac_gateway)
-def break_network():
-    print('ваня лох')
-while True:
-    arp_request = scapy.ARP(str(ip_gateway)+'/24')   
-    broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")   
-    arp_request_broadcast = broadcast / arp_request   
-    answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[0] 
-    count_router = 0
-    for element in answered_list:
-        list_users.append([element[1].psrc, element[1].hwsrc])
-        if count_router == 2:
-            break_network()
-        if mac_gateway in list_users or mac_gateway in list_users:
-            count_router+=1
-
-
-
-
-
-
-
-
-
-
-
 from scapy.all import *
 import scapy.all as scapy 
 
