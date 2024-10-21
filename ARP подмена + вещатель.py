@@ -1,10 +1,10 @@
 import scapy.all as scapy
 import time
     
-route = input('Введите ip адрес роутера (прим: X.X.X.X): ') 
+route = scapy.conf.route.route("0.0.0.0")[2] 
 
 while True:
-    print(scapy.arping(route+'/24'))
+    print(scapy.arping(route +'/24'))
     target = input('Введите ip адрес жертвы (прим: X.X.X.X): ')
     if target != '': break
 
