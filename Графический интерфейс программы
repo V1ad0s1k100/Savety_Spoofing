@@ -1,10 +1,18 @@
-import pygame
-import time
-import subprocess 
-import os 
-import platform
-import scapy.all as scapy
-pygame.font.init()
+try: 
+    import pandas as pd
+    from pandas.api.types import CategoricalDtype
+    import pygame
+    import time
+    import subprocess 
+    import os 
+    import platform
+    import scapy.all as scapy
+except ModuleNotFoundError:
+    print(1)
+try:
+    pygame.font.init()
+except NameError:
+    print(1)
 
 def get_arp_table(): 
     route = scapy.conf.route.route("0.0.0.0")[1]
@@ -12,12 +20,12 @@ def get_arp_table():
     output = subprocess.check_output(command, shell=True) 
     return output.decode('latin-1').splitlines()  # Изменено на 'latin-1' 
 
-def check_duplicates(arp_table): 
-    mac_dict = {} 
+def check_duplicates(arp_table):
+    mac_dict = {}
     for line in arp_table:
         parts = line.split()
         if len(parts) >= 3:  # Убедимся, что строка содержит нужные данные 
-            ip_address = parts[0] 
+            ip_address = parts[0]
             mac_address = parts[1] if platform.system() == "Windows" else parts[5]  # Для 'ip neigh' 
              
             # Приводим MAC-адрес к нижнему регистру и убираем разделители для сравнения 
@@ -28,37 +36,31 @@ def check_duplicates(arp_table):
                 continue 
              
             if mac_address_cleaned in mac_dict: 
-                mac_dict[mac_address_cleaned].append(ip_address) 
-            else: 
-                mac_dict[mac_address_cleaned] = [ip_address] 
+                mac_dict[mac_address_cleaned].append(ip_address)
+            else:
+                mac_dict[mac_address_cleaned] = [ip_address]
  
     return {mac: ips for mac, ips in mac_dict.items() if len(ips) > 1} 
  
-def disable_internet(): 
-    global text1
-    global text2
-    try: 
-        if platform.system() == "Windows": 
-            os.system("ipconfig /release") 
-        else: 
-            os.system("sudo ip link set dev wlan0 down")  # Замените <интерфейс> на нужный 
-    except Exception as e: 
-        text1 = f"Ошибка при отключении интернета: {e}"
-        text2 = ''
-
 def Savety_ARP(): 
     global text1
     global text2
     arp_table = get_arp_table() 
     duplicates = check_duplicates(arp_table) 
-    if duplicates: 
+    if duplicates:
         text1 = "Найден дубликат MAC-адреса:" + str(duplicates)
         text2 = ''
-        disable_internet() 
-    else: 
-        text1 = "Дубликатов не найдено."
+        try:
+            if platform.system() == "Windows":
+                os.system("ipconfig /release")
+            if platform.system() == "Linux":
+                os.system("sudo ip link set dev wlan0 down") # Замените <интерфейс> на нужный
+        except Exception as e:
+            text1 = f"Ошибка при отключении интернета: {e}"
+            text2 = ''
+    else:
+        text1 = "Дубликатов не найдено"
         text2 = ''
-        print('Дубикатов не найдено')
 
 #Графика
 W = 600
@@ -89,7 +91,6 @@ btn = pygame.Surface((100,100))
 btn.fill(VOILET)
 circle = pygame.draw.circle(btn, RED, (50,50), 25)
 image_button = pygame.image.load('Изображения/Переключатель.png')
-
 btn.blit(image_button, (0,0))
 
 
@@ -136,11 +137,13 @@ while 1:
                     sc.blit(info, POSITION_info)                    
                     check_ARP = True
                 count +=1
-                print(count) 
         #Отрисовка текста в зависимости от цвета кнопки            
         if check_ARP:
             time.sleep(0.2)
-            Savety_ARP()
+            try:
+                Savety_ARP()
+            except (subprocess.CalledProcessError):
+                continue
             text_info_pos_1 = text_info_1.render(text1, 1, BLACK, WHITE)
             text_info_pos_2 = text_info_2.render(text2, 1, BLACK, WHITE)
             sc.blit(text_info_pos_1, (10, H-40))
