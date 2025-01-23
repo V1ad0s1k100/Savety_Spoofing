@@ -1,0 +1,144 @@
+.header,
+.header__menu-list {
+  display: flex;
+}
+
+.link__decoration {
+  text-decoration: none;
+}
+
+.link__hover {
+  transition: var(--transition);
+}
+
+.header__menu-list {
+  list-style-type: none;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}
+.header__menu-item {
+  padding: 0;
+}
+.header__menu-link {
+  color: #000;
+}
+.header--align-inside {
+  justify-content: space-between;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./font-styles/Poppins-Regular") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./font-styles/Poppins-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./font-styles/Poppins-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./font-styles/Poppins-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(ul[class]) {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root {
+  --font-72: 72px;
+  --font-20: 20px;
+  --font-18: 18px;
+  --font-48: 48px;
+  --font-16: 16px;
+  --font-22: 22px;
+  --font-40: 40px;
+  --font-20: 20px;
+  --font-54: 54px;
+  --font-24: 24px;
+  --font-15: 15px;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-family: "Poppins", Arial, sans-serif;
+  --transition: all 0.2s linear;
+}
+
+.link__hover--hover:hover {
+  color: #da0000;
+}
+
+.menu__link--button-hover:hover {
+  scale: 1.05;
+}
+
+.block-width {
+  max-width: clamp(400px, 100vw, 1920px);
+}/*# sourceMappingURL=main.css.map */

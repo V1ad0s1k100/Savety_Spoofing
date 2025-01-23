@@ -1,0 +1,10 @@
+@import "./block/header";
+@import "./base/font-styles";
+@import "./base/mixins";
+@import "./base/normalize";
+@import "./base/variables";
+@import "./effects/hover.scss";
+
+.block-width {
+  @include responsive-max-width(400, 1920);
+}

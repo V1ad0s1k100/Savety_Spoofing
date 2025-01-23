@@ -1,0 +1,31 @@
+.header,
+.header__menu-list {
+  display: flex;
+}
+
+.link__decoration {
+  text-decoration: none;
+}
+
+.link__hover {
+  transition: var(--transition);
+}
+
+.header {
+  &__menu-list {
+    list-style-type: none;
+    column-gap: 20px;
+  }
+
+  &__menu-item {
+    padding: 0;
+  }
+
+  &__menu-link {
+    color: #000;
+  }
+
+  &--align-inside {
+    justify-content: space-between;
+  }
+}
