@@ -1,5 +1,6 @@
-.header,
-.header__menu-list {
+.navbar-fixed,
+.nav__menu-list,
+.container-navbar {
   display: flex;
 }
 
@@ -11,21 +12,25 @@
   transition: var(--transition);
 }
 
-.header {
+.nav {
   &__menu-list {
     list-style-type: none;
-    column-gap: 20px;
   }
 
   &__menu-item {
-    padding: 0;
+    padding-inline: 12px;
   }
 
   &__menu-link {
-    color: #000;
+    color: var(--foreground);
   }
 
-  &--align-inside {
+  &__menu-link--font {
+    font-family: var(--font-family);
+    font-size: var(--font-16);
+  }
+
+  &bar-fixed--align-inside {
     justify-content: space-between;
   }
 }

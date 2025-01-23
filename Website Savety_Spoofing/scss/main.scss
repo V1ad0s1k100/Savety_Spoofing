@@ -3,8 +3,15 @@
 @import "./base/mixins";
 @import "./base/normalize";
 @import "./base/variables";
+@import "./base/media-request";
 @import "./effects/hover.scss";
+
+body {
+  background-color: var(--background);
+}
 
 .block-width {
   @include responsive-max-width(400, 1920);
+  padding-inline: 40px;
+  margin-inline: auto;
 }
