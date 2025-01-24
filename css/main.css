@@ -2,10 +2,13 @@
   text-decoration: none;
 }
 
+.link__hover {
+  transition: var(--transition);
+}
+
 .header {
-  display: grid;
+  display: flex;
   justify-content: center;
-  grid-template: 1fr/max-content 1fr;
   -moz-column-gap: 166px;
        column-gap: 166px;
 }
@@ -13,6 +16,7 @@
   width: clamp(300px, 100vw, 1920px);
   min-height: 100vh;
   padding-inline: 110px 116px;
+  margin-inline: auto;
 }
 .header__slogan {
   align-self: center;
@@ -22,7 +26,7 @@
 .header__slogan-font {
   font-family: var(--font-family-dm-sans);
   font-weight: var(--font-weight-bold);
-  font-size: clamp(25px, 3.4895833333vw, 67px);
+  font-size: clamp(30px, 3.4895833333vw, 67px);
   line-height: 1.29;
 }
 
@@ -43,39 +47,50 @@
   color: var(--text-white);
 }
 .download__link--size {
-  width: clamp(80px, 8.12vw, 156px);
-  height: clamp(30px, 3.12vw, 60px);
+  padding-block: clamp(7px, 0.5989583333vw, 11.5px);
+  padding-right: clamp(10px, 2.0833333333vw, 40px);
+  padding-left: clamp(10px, 1.7708333333vw, 34px);
 }
 .download__link--background {
   background-color: var(--background-black);
 }
 .download__link--border {
-  border-radius: 4px;
+  border-radius: clamp(2px, 0.46875vw, 9px);
 }
 
 .window-program {
   display: flex;
   align-items: center;
 }
+.window-program--size {
+  flex-shrink: 0.6;
+}
 
 @font-face {
-  font-family: "Roboto";
-  src: url("../font-styles/Roboto_Condensed-Bold.woff") format("woff2");
+  font-family: "DMSans";
+  src: url("../font-styles/DMSans18pt-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Roboto";
-  src: url("../font-styles/Roboto_Condensed-Medium.woff") format("woff2");
-  font-weight: 500;
+  font-family: "Epilogue";
+  src: url("../font-styles/Epilogue-Bold.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Roboto";
-  src: url("../font-styles/Roboto_Condensed-Regular.woff") format("woff2");
+  font-family: "Poppins";
+  src: url("../font-styles/Poppins-Regular.woff2") format("woff2");
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../font-styles/Poppins-SemiBold.woff2") format("woff2");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
@@ -137,29 +152,73 @@ body {
   }
 }
 :root {
+  /* Colors */
   --background-black: hsla(0, 5%, 11%, 1);
-  --text-white: hsla(206, 89%, 99%, 1);
+  --background-white: hsla(206, 89%, 99%, 1);
+  --background-gray: hsla(204, 19%, 95%, 1);
+  --text-white: var(--background-white);
   --text-black: hsla(208, 17%, 13%, 1);
   --text-black-title: var(--background-black);
   --text-blue: hsla(206, 89%, 55%, 1);
   --text-gray: hsla(209, 18%, 45%, 1);
-  --background-white: var(--text-white);
-  --background-gray: hsla(204, 19%, 95%, 1);
+  /* Font Sizes */
   --font-28: 28px;
+  /* Font Weights */
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  --font-family-poppins: "Poppins", "Times New Roman";
-  --font-family-dm-sans: "DM_Sans", "Times New Roman";
-  --font-family-epilogue: "Epilogue", "Times New Roman";
+  /* Font Families */
+  --font-family-poppins: "Poppins", sans-serif;
+  --font-family-dm-sans: "DM Sans", sans-serif;
+  --font-family-epilogue: "Epilogue", sans-serif;
+  /* Transitions */
   --transition: all 0.2s linear;
 }
 
-.link__hover--hover:hover {
-  color: #da0000;
+@media (max-width: 1450px) {
+  .header--size {
+    padding-inline: 50px;
+  }
+  .download__container {
+    padding-top: 50px;
+  }
+  .window-program--size {
+    max-width: 550px;
+  }
 }
-
-.menu__link--button-hover:hover {
-  scale: 1.05;
+@media (max-width: 1150px) {
+  .header {
+    -moz-column-gap: 80px;
+         column-gap: 80px;
+  }
+  .header--size {
+    padding-inline: 20px;
+  }
+  .window-program--size {
+    max-width: 400px;
+  }
+}
+@media (max-width: 800px) {
+  .header {
+    flex-direction: column;
+    padding-inline: 0;
+  }
+  .header__slogan-title {
+    width: 70vw;
+    text-align: center;
+    padding-top: 20px;
+  }
+  .download__container {
+    align-self: center;
+    padding-block: 50px;
+  }
+  .window-program--size {
+    max-width: clamp(200px, 70vw, 500px);
+    align-self: center;
+  }
+}
+.link__hover--hover:hover {
+  color: var(--text-black);
+  background-color: var(--background-gray);
 }/*# sourceMappingURL=main.css.map */

@@ -6,16 +6,20 @@
   }
 }
 
+.link__hover {
+  transition: var(--transition);
+}
+
 .header {
-  display: grid;
+  display: flex;
   justify-content: center;
-  grid-template: 1fr / max-content 1fr;
   column-gap: 166px;
 
   &--size {
     @include responsive-max-width(300, 1920);
     min-height: 100vh;
     padding-inline: 110px 116px;
+    margin-inline: auto;
   }
 
   &__slogan {
@@ -25,7 +29,7 @@
     &-font {
       font-family: var(--font-family-dm-sans);
       font-weight: var(--font-weight-bold);
-      @include responsive-font-size(25, 67);
+      @include responsive-font-size(30, 67);
       line-height: 1.29;
     }
   }
@@ -50,8 +54,9 @@
     }
 
     &--size {
-      width: clamp(80px, 8.12vw, 156px);
-      height: clamp(30px, 3.12vw, 60px);
+      @include responsive-padding(7, 11.5, block);
+      @include responsive-padding(10, 40, right);
+      @include responsive-padding(10, 34, left);
     }
 
     &--background {
@@ -59,7 +64,7 @@
     }
 
     &--border {
-      border-radius: clamp(2px, 4px, 9px);
+      @include border-radius(2, 9);
     }
   }
 }
@@ -67,4 +72,7 @@
 .window-program {
   display: flex;
   align-items: center;
+  &--size {
+    flex-shrink: 0.6;
+  }
 }
