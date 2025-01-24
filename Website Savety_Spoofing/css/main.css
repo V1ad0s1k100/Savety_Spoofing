@@ -1,47 +1,61 @@
-.navbar-fixed,
-.nav__menu-list,
-.container-navbar {
-  display: flex;
-}
-
-.link__decoration {
+.link--text-decoration {
   text-decoration: none;
 }
 
-.link__hover {
-  transition: var(--transition);
+.header {
+  display: grid;
+  justify-content: center;
+  grid-template: 1fr/max-content 1fr;
+  -moz-column-gap: 166px;
+       column-gap: 166px;
+}
+.header--size {
+  width: clamp(300px, 100vw, 1920px);
+  min-height: 100vh;
+  padding-inline: 110px 116px;
+}
+.header__slogan {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+.header__slogan-font {
+  font-family: var(--font-family-dm-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: clamp(25px, 3.4895833333vw, 67px);
+  line-height: 1.29;
 }
 
-.logo {
-  width: 50px;
-  aspect-ratio: 1;
-  background-color: #fff;
-  border-radius: 20px;
+.download__container {
+  padding-top: 87px;
+  align-self: start;
+}
+.download__link {
+  font-size: clamp(20px, 1.4583333333vw, 28px);
+  font-family: var(--font-family-dm-sans);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.28;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.download__link--color {
+  color: var(--text-white);
+}
+.download__link--size {
+  width: clamp(80px, 8.12vw, 156px);
+  height: clamp(30px, 3.12vw, 60px);
+}
+.download__link--background {
+  background-color: var(--background-black);
+}
+.download__link--border {
+  border-radius: 4px;
 }
 
-.nav__menu-list {
-  list-style-type: none;
-}
-.nav__menu-item {
-  padding-inline: 12px;
-}
-.nav__menu-link {
-  color: var(--foreground);
-}
-.nav__menu-link--font {
-  font-family: var(--font-family);
-  font-size: var(--font-16);
-}
-.navbar-fixed--align-inside {
-  justify-content: space-between;
-}
-
-.theme-switch {
-  padding: 1px, 6px;
-}
-.theme-switch--background {
-  border: none;
-  background-color: transparent;
+.window-program {
+  display: flex;
+  align-items: center;
 }
 
 @font-face {
@@ -123,124 +137,29 @@ body {
   }
 }
 :root {
-  --lightblue: #00bcf2;
-  --blue: #0072be;
-  --stable-blue: #0076bf;
-  --midblue: #00188f;
-  --darkblue: #002050;
-  --lightpurple: #b4a0ff;
-  --purple: #5c2d91;
-  --darkpurple: #373277;
-  --lightmagenta: #e3008c;
-  --magenta: #b4009e;
-  --darkmagenta: #5c005c;
-  --red: #e81123;
-  --darkred: #a80000;
-  --lightorange: #ff8c00;
-  --orange: #d83b01;
-  --insiders-green: #058f2d;
-  --lightyellow: #fff100;
-  --yellow: #ffcc00;
-  --lightgreen: #bad80a;
-  --green: #477a32;
-  --darkgreen: #004b1c;
-  --lightteal: #00b294;
-  --teal: #008272;
-  --darkteal: #004b50;
-  --gray-95: darken(white, 5%);
-  --lightgray: #e3e3e3;
-  --gray: #ccc;
-  --darkgray: #333;
-  --white: #ffffff;
-  --black: #000000;
-  --background: #0d1117;
-  --foreground: #9ba3b4;
-  --foreground-intense: #e6eefa;
-  --header-foreground: #c3d0e5;
-  --accent-primary: #0078d4;
-  --accent-secondary: #0069b9;
-  --link-foreground: #4daafc;
-  --link-foreground-hover: #8fc3fe;
-  --link-underline-background: var(--link-foreground);
-  --background: #0d1117;
-  --border-background: rgba(255, 255, 255, 0.12);
-  --header-background: var(--background);
-  --footer-background: var(--background);
-  --button-primary-background: var(--accent-primary);
-  --button-primary-foreground: var(--white);
-  --button-primary-border: transparent;
-  --button-primary-hover: #005ba4;
-  --button-secondary-background: #25292e;
-  --button-secondary-foreground: var(--header-foreground);
-  --button-secondary-border: rgba(255, 255, 255, 0.3);
-  --button-secondary-hover: #333940;
-  --icon-button-hover-background: rgba(255, 255, 255, 0.1);
-  --navbar-border: var(--border-background);
-  --search-input-background: transparent;
-  --search-input-border: rgba(255, 255, 255, 0.15);
-  --search-input-border-active: var(--accent-primary);
-  --search-input-foreground: var(--foreground);
-  --search-input-placeholder-foreground: #9ba3b4;
-  --card-background: rgba(255, 255, 255, 0.04);
-  --card-hover-background: rgba(255, 255, 255, 0.08);
-  --card-border: rgba(255, 255, 255, 0.12);
-  --card-border-active: rgba(255, 255, 255, 0.2);
-  --feature-card-icon-background: rgba(255, 255, 255, 0.07);
-  --banner-background: var(--background);
-  --banner-link-color: var(--link-foreground);
-  --banner-text: var(--foreground);
-  --hero-background: linear-gradient(180deg, #0e0e0e 0%, #141414 100%);
-  --hero-border-bottom: var(--border-background);
-  --home-foreground: #9fb1d1;
-  --code-background: rgba(255, 255, 255, 0.15);
-  --code-foreground: #cccccc;
-  --keybinding-background: rgba(255, 255, 255, 0.15);
-  --keybinding-foreground: var(--link-foreground);
-  --code-copy-foreground: #ccc;
-  --code-copy-background: #444;
-  --alert-note-border-color: var(--lightblue);
-  --alert-warning-border-color: var(--lightyellow);
-  --alert-important-border-color: var(--lightpurple);
-  --alert-caution-border-color: #fe7543;
-  --alert-tip-border-color: var(--lightgreen);
-  --font-72: 72px;
-  --font-20: 20px;
-  --font-18: 18px;
-  --font-48: 48px;
-  --font-16: 16px;
-  --font-22: 22px;
-  --font-40: 40px;
-  --font-20: 20px;
-  --font-54: 54px;
-  --font-24: 24px;
-  --font-15: 15px;
+  --background-black: hsla(0, 5%, 11%, 1);
+  --text-white: hsla(206, 89%, 99%, 1);
+  --text-black: hsla(208, 17%, 13%, 1);
+  --text-black-title: var(--background-black);
+  --text-blue: hsla(206, 89%, 55%, 1);
+  --text-gray: hsla(209, 18%, 45%, 1);
+  --background-white: var(--text-white);
+  --background-gray: hsla(204, 19%, 95%, 1);
+  --font-28: 28px;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  --font-family: "Roboto", Times, serif;
+  --font-family-poppins: "Poppins", "Times New Roman";
+  --font-family-dm-sans: "DM_Sans", "Times New Roman";
+  --font-family-epilogue: "Epilogue", "Times New Roman";
   --transition: all 0.2s linear;
 }
 
-@media (max-width: 1440px) {
-  .block-width {
-    width: 1320px;
-  }
-}
 .link__hover--hover:hover {
   color: #da0000;
 }
 
 .menu__link--button-hover:hover {
   scale: 1.05;
-}
-
-body {
-  background-color: var(--background);
-}
-
-.block-width {
-  max-width: clamp(400px, 100vw, 1920px);
-  padding-inline: 40px;
-  margin-inline: auto;
 }/*# sourceMappingURL=main.css.map */

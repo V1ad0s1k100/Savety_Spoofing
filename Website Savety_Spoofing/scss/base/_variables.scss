@@ -10,25 +10,16 @@
   --background-white: var(--text-white);
   --background-gray: hsla(204, 19%, 95%, 1);
 
-  --font-72: 72px;
-  --font-20: 20px;
-  --font-18: 18px;
-  --font-48: 48px;
-  --font-16: 16px;
-  --font-22: 22px;
-  --font-40: 40px;
-  --font-54: 54px;
-  --font-24: 24px;
-  --font-15: 15px;
+  --font-28: 28px;
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  --font-family: "Poppins", "Times New Roman";
-  --font-family: "DM_Sans", "Times New Roman";
-  --font-family: "Epilogue", "Times New Roman";
+  --font-family-poppins: "Poppins", "Times New Roman";
+  --font-family-dm-sans: "DM_Sans", "Times New Roman";
+  --font-family-epilogue: "Epilogue", "Times New Roman";
 
   --transition: all 0.2s linear;
 }
