@@ -56,6 +56,7 @@
 }
 .download__link--border {
   border-radius: clamp(2px, 0.46875vw, 9px);
+  border: solid 3px var(--background-black);
 }
 
 .window-program {
@@ -216,6 +217,15 @@ body {
   .window-program--size {
     max-width: clamp(200px, 70vw, 500px);
     align-self: center;
+  }
+}
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    padding-inline: 0;
+  }
+  .header__slogan-title {
+    padding-top: 0px;
   }
 }
 .link__hover--hover:hover {

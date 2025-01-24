@@ -26,11 +26,13 @@
     align-self: center;
     display: flex;
     flex-direction: column;
+
     &-font {
       font-family: var(--font-family-dm-sans);
       font-weight: var(--font-weight-bold);
       @include responsive-font-size(30, 67);
       line-height: 1.29;
+      
     }
   }
 }
@@ -65,6 +67,7 @@
 
     &--border {
       @include border-radius(2, 9);
+      border: solid 3px var(--background-black);
     }
   }
 }

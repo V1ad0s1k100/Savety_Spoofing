@@ -59,3 +59,16 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    padding-inline: 0;
+
+    &__slogan {
+      &-title {
+        padding-top: 0px;
+      }
+    }
+  }
+}
