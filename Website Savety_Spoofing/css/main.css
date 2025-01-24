@@ -12,6 +12,13 @@
   transition: var(--transition);
 }
 
+.logo {
+  width: 50px;
+  aspect-ratio: 1;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
 .nav__menu-list {
   list-style-type: none;
 }
@@ -27,6 +34,14 @@
 }
 .navbar-fixed--align-inside {
   justify-content: space-between;
+}
+
+.theme-switch {
+  padding: 1px, 6px;
+}
+.theme-switch--background {
+  border: none;
+  background-color: transparent;
 }
 
 @font-face {
