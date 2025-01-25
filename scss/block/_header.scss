@@ -1,15 +1,5 @@
 @import "../base/mixins";
 
-.link {
-  &--text-decoration {
-    text-decoration: none;
-  }
-}
-
-.link__hover {
-  transition: var(--transition);
-}
-
 .header {
   display: flex;
   justify-content: center;

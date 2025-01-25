@@ -5,3 +5,14 @@
 @import "./base/variables";
 @import "./base/media-request";
 @import "./effects/hover";
+@import "./block/footer";
+
+.link {
+  &--text-decoration {
+    text-decoration: none;
+  }
+}
+
+.link__hover {
+  transition: var(--transition);
+}
