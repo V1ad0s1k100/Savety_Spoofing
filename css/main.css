@@ -228,7 +228,9 @@ body {
     padding-top: 0px;
   }
 }
-.link__hover--hover:hover {
-  color: var(--text-black);
-  background-color: var(--background-gray);
+@media (hover: hover) {
+  .link__hover--hover:hover {
+    color: var(--text-black);
+    background-color: var(--background-gray);
+  }
 }/*# sourceMappingURL=main.css.map */
