@@ -27,10 +27,16 @@
 }
 
 .download {
-  &__container {
+  &__container-one--size {
     padding-top: 87px;
     align-self: start;
   }
+
+  &__container-two--size {
+    padding-top: 24px;
+    width: min-content;
+  }
+
   &__link {
     @include responsive-font-size(20, 28);
     font-family: var(--font-family-dm-sans);

@@ -10,6 +10,10 @@
   padding-#{$pos}: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px);
 }
 
+@mixin responsive-margin($min: 20, $max: 40, $pos: right) {
+  margin-#{$pos}: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px);
+}
+
 @mixin border-radius($min: 20, $max: 40) {
   border-radius: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px);
 }

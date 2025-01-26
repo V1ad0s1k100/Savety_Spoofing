@@ -1,10 +1,14 @@
-@import "./block/header";
+@import "./base/variables";
 @import "./base/font-styles";
 @import "./base/mixins";
 @import "./base/normalize";
-@import "./base/variables";
-@import "./effects/hover";
+
+@import "./block/header";
 @import "./block/footer";
+@import "./block/slogan";
+@import "./block/advantages";
+
+@import "./effects/hover";
 @import "./base/media-request";
 
 .link {

@@ -37,6 +37,9 @@
     &--size {
       @include responsive-padding(50, 72, top);
       @include responsive-padding(69, 138, bottom);
+      margin-top: 67px;
+      column-gap: 27px;
+      row-gap: 20px;
     }
 
     &-item:first-child {
