@@ -5,7 +5,7 @@
        column-gap: 166px;
 }
 .header--size {
-  width: clamp(300px, 100vw, 1920px);
+  width: clamp(300px, 78.5416666667vw, 1508px);
   min-height: 100vh;
   padding-inline: 110px 116px;
   margin-inline: auto;
