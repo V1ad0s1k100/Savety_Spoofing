@@ -1,4 +1,5 @@
 @import "../base/mixins";
+@import "../block/footer";
 
 @media (max-width: 1450px) {
   .header {
@@ -29,6 +30,33 @@
   .window-program {
     &--size {
       max-width: 400px;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .footer {
+    &__container-item--one {
+      grid-area: item-one;
+    }
+    &__container-item--two {
+      grid-area: item-two;
+    }
+    &__container-item--three {
+      grid-area: item-three;
+    }
+    &__container-item--four {
+      grid-area: item-four;
+    }
+
+    &__container {
+      display: grid;
+      grid-template-areas:
+        "item-one"
+        "item-two"
+        "item-three"
+        "item-four";
+      row-gap: 20px;
     }
   }
 }
@@ -70,5 +98,14 @@
         padding-top: 0px;
       }
     }
+  }
+
+  .footer__container {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 350px) {
+  .footer__container {
   }
 }

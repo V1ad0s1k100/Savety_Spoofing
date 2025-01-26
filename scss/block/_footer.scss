@@ -27,7 +27,9 @@
   &__container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     @include responsive-max-width(300, 1508);
+
     &--align {
       margin-inline: auto;
     }
@@ -48,10 +50,6 @@
     font-size: 16px;
     font-weight: var(--font-weight-semibold);
     @include row-height(12, 24);
-
-    &--size {
-      @include responsive-padding(12, 16, bottom);
-    }
   }
 
   &__list-item:not(:last-child) {
@@ -75,6 +73,7 @@
 
   &__slogan {
     @include row-height(14, 20);
+    word-break: break-all;
   }
 
   &__number-icon::before,

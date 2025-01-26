@@ -3,9 +3,9 @@
 @import "./base/mixins";
 @import "./base/normalize";
 @import "./base/variables";
-@import "./base/media-request";
 @import "./effects/hover";
 @import "./block/footer";
+@import "./base/media-request";
 
 .link {
   &--text-decoration {
