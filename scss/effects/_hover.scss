@@ -8,3 +8,7 @@
     color: var(--text-blue);
   }
 }
+
+.slider__arrow-container:hover .slider__arrow--left, .slider__arrow-container:hover .slider__arrow--right {
+  border-color: var(--arrow-blue);
+} 

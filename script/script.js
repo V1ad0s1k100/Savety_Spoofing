@@ -1,6 +1,6 @@
 const slides = document.querySelectorAll(".slider__item");
-const prev = document.querySelector(".slider__arrow--left");
-const next = document.querySelector(".slider__arrow--right");
+const prev = document.querySelector(".slider__arrow-container-left");
+const next = document.querySelector(".slider__arrow-container-right");
 let currentIndex = 0;
 
 function showSlide(index) {

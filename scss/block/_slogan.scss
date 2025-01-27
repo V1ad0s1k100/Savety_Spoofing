@@ -1,10 +1,17 @@
-.slogan__block--size {
-  @include responsive-max-width(300, 1274);
-  margin-inline: auto;
-}
+.slogan__block {
+  &-title {
+    text-align: center;
+    
+    &--font {
+      font-family: var(--font-family-epilogue);
+    }
+  }
 
-.slogan__block-title {
-  text-align: center;
+
+  &--size {
+    @include responsive-max-width(300, 1274);
+    margin-inline: auto;
+  }
 }
 
 .download {

@@ -1,12 +1,11 @@
-.advantages {
-  min-height: 100vh;
-}
-
+@import "../base/mixins";
 .slider {
-  position: relative;
-  width: 100%;
-  height: 90vh;
-  margin: auto;
+  display: grid;
+  grid-template: 1fr / 150px 782px 150px;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 143px;
 
   &__container {
     display: flex;
@@ -14,13 +13,28 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+
+    &-title {
+      @include responsive-font-size(30, 40);
+      font-weight: var(--font-weight-bold);
+      font-family: var(--font-family-epilogue);
+      text-align: center;
+      color: var(--text-black);
+      padding-bottom: 12px;
+    }
+
+    &-comment {
+      @include responsive-font-size(14, 16);
+      font-family: var(--font-family-poppins);
+      @include row-height(16, 24);
+      text-align: center;
+      padding-bottom: 64px;
+    }
   }
 
   &__item {
     display: none;
     text-align: center;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out; // Добавлено свойство для плавного перехода
     font-family: var(--font-family-poppins);
     font-weight: var(--font-weight-regular);
 
@@ -43,42 +57,68 @@
     font-size: 20px;
     margin-bottom: 10px;
     color: var(--text-black);
-    font-weight: var(font-weight);
+    font-weight: var(--font-weight-semibold);
   }
 
-  &__comment {
-    font-size: 1rem;
+  &__comment,
+  .slider__container-comment {
+    @include responsive-font-size(14, 16);
+    color: var(--text-gray);
   }
 
   &__arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2rem;
     color: var(--arrow-gray);
-    padding: 2px 16px;
-    cursor: pointer;
     user-select: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%; // Добавлены кружки
-    background-color: var(--background-gray); // Полупрозрачный фон для лучшей видимости
+    cursor: pointer;
+
+    &-container {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: var(--background-gray);
+      align-self: center;
+      /* Add this line */
+
+      &-right {
+        justify-self: end;
+      }
+    }
 
     &--left {
-      left: 10%; // Сделано ближе к слайду
+      position: relative;
+      border: 4px solid var(--arrow-gray);
+      width: 17px;
+      aspect-ratio: 1;
+      border-right: none;
+      border-bottom: none;
+      transform: rotate(-45deg);
+      left: 3.4px;
+      transition: var(--transition);
     }
 
     &--right {
-      right: 10%; // Сделано ближе к слайду
+      position: relative;
+      border: 4px solid var(--arrow-gray);
+      width: 17px;
+      aspect-ratio: 1;
+      border-right: none;
+      border-bottom: none;
+      transform: rotate(135deg);
+      right: 3.4px;
+      transition: var(--transition);
     }
   }
 
-  &__arrow::before {
+  &__arrow-container::before {
     content: "";
     position: absolute;
     display: block;
-    width: 60px;
+    width: 100%;
     height: 50vh;
+    cursor: pointer;
   }
 }
