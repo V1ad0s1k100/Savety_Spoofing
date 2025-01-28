@@ -81,6 +81,7 @@
       border-radius: 50%;
       background-color: var(--background-gray);
       align-self: center;
+      flex-shrink: 0;
       /* Add this line */
 
       &-right {
