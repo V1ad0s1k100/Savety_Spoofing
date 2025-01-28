@@ -1,0 +1,96 @@
+@import "../base/variables";
+@import "../base/mixins";
+
+.description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; // Высота секции на всю высоту окна браузера
+  padding: 20px; // Отступы вокруг секции
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px; // Максимальная ширина контейнера
+  }
+
+  &__item {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  &__item--top {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &__item {
+    flex: 1;
+    text-align: center;
+  }
+
+  &__item + &__item {
+    margin-left: 20px;
+  }
+
+  &__title {
+    @include responsive-font-size(25, 40);
+    font-family: var(--font-family-epilogue);
+    @include row-height(40, 64);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &__comment {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-regular);
+    font-size: 16px;
+    margin-bottom: 64px;
+    color: var(--text-gray);
+  }
+
+  &__item-title {
+    @include responsive-font-size(16, 20);
+    @include row-height(20, 32);
+    margin-bottom: 12px;
+    font-weight: var(--font-weight-semibold);
+    font-family: var(--font-family-poppins);
+  }
+
+  &__item-comment {
+    font-size: 16px;
+    @include row-height(16, 24);
+    margin-bottom: 18px;
+    color: var(--text-gray);
+    font-family: var(--font-family-poppins);
+  }
+
+  &__item-link {
+    padding: 6px;
+    font-size: 16px;
+    font-family: var(--font-family-poppins);
+    color: var(--text-blue);
+    text-decoration: none;
+  }
+
+  &__item-link::after {
+    content: "";
+    position: relative;
+    display: inline-block;
+    bottom: 2px;
+    left: 5px;
+    width: 8px;
+    aspect-ratio: 1;
+    transform: rotate(45deg);
+    border: 2px solid var(--text-blue);
+    border-bottom: none;
+    border-left: none;
+    transition: var(--transition);
+  }
+}
