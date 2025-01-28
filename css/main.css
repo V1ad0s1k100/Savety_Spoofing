@@ -672,6 +672,12 @@ body {
     width: 20vw;
     height: 100%;
   }
+  .description__row {
+    flex-wrap: wrap;
+  }
+  .description__item {
+    min-width: 300px;
+  }
 }
 @media (max-width: 600px) {
   .header {
@@ -683,6 +689,12 @@ body {
   }
   .footer__container {
     max-width: 80%;
+  }
+  .description__item:last-child {
+    padding-bottom: 40px;
+  }
+  .description__comment {
+    margin-bottom: 0px;
   }
 }
 .link--text-decoration {

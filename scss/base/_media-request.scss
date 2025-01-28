@@ -113,6 +113,16 @@
       }
     }
   }
+
+  .description {
+    &__row {
+      flex-wrap: wrap;
+    }
+
+    &__item {
+      min-width: 300px;
+    }
+  }
 }
 
 @media (max-width: 600px) {
@@ -129,5 +139,13 @@
 
   .footer__container {
     max-width: 80%;
+  }
+
+  .description__item:last-child {
+    padding-bottom: 40px;
+  }
+
+  .description__comment {
+    margin-bottom: 0px;
   }
 }
