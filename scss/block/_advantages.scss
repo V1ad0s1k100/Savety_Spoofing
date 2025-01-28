@@ -24,7 +24,6 @@
     }
 
     &-comment {
-      @include responsive-font-size(14, 16);
       font-family: var(--font-family-poppins);
       @include row-height(16, 24);
       text-align: center;
@@ -62,7 +61,7 @@
 
   &__comment,
   .slider__container-comment {
-    @include responsive-font-size(14, 16);
+    font-size: 16px;
     color: var(--text-gray);
   }
 
