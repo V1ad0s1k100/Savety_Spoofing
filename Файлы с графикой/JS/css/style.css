@@ -1,0 +1,69 @@
+@font-face {
+  font-family: "NotoSans";
+  src: url("./fonts/NotoSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: hsla(206, 89%, 55%, 1);
+  padding: 0;
+  margin: 0;
+}
+
+.header .background-oval {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 40vh;
+  border-bottom-right-radius: 100%;
+  border-bottom-left-radius: 100%;
+  background-color: #fff;
+  font-size: clamp(10px, 9vw, 570px);
+  font-family: "NotoSans", Arial, sans-serif;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 40vh;
+}
+
+.button-container__button {
+  position: relative;
+  bottom: -6px;
+  width: clamp(40px, 14.88vw, 770px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  background-color: #101010;
+  background-image: url("../image/icon/logo.png");
+  background-size: cover;
+  background-position: center;
+  transition: all 0.2s ease;
+}
+
+.button-container__button:hover {
+  background-color: #303030;
+}
+
+.notifications-container {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  padding-inline: 5px;
+  height: 11vh;
+  background-color: #fff;
+  margin-left: 10px;
+  border-radius: 20px 20px 20px 0;
+}
+
+.notifications-container__title {
+  font-size: clamp(10px, 1.7vw, 50px);
+  font-family: Arial;
+  font-weight: 500;
+}

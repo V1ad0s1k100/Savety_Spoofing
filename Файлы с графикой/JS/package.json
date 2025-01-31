@@ -1,0 +1,16 @@
+{
+  "name": "Savety_Spoofing",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Savety_Spoofing Team",
+  "license": "ISC",
+  "description": "...",
+  "devDependencies": {
+    "electron": "^34.0.1",
+    "electron-builder": "^25.1.8"
+  }
+}
