@@ -15,7 +15,7 @@ function createWindow() {
     },
     autoHideMenuBar: true,
   });
-
+  win.setIcon("image/icon/logo.png");
   win.loadFile("index.html"); // Загружаем HTML файл в окно
 }
 
