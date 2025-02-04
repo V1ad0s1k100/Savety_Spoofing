@@ -42,3 +42,6 @@ except KeyboardInterrupt:
     print("\n[+] Detected CTRL + C ...... Quitting.")
     restore(target, route)
     restore(route, target)
+
+# 192.168.31.1
+# 192.168.31.25
