@@ -1,7 +1,0 @@
-@mixin responsive-font-size($min: 20, $max: 40) {
-  font-size: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px);
-}
-
-@mixin responsive-max-width($min: 20, $max: 40) {
-  width: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px);
-}
