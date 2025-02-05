@@ -4,13 +4,16 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "package": "electron-packager . --out=dist --platform=win32 --arch=x64 --overwrite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-builder --win"
   },
   "author": "Savety_Spoofing Team",
   "license": "ISC",
   "description": "...",
   "devDependencies": {
-    "electron": "^34.0.1",
-    "electron-builder": "^25.1.8"
+    "electron": "^23.0.0",
+    "electron-builder": "^25.1.8",
+    "electron-packager": "^17.0.0"
   }
 }
