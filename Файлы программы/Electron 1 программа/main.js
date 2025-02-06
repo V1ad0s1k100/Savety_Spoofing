@@ -4,7 +4,6 @@ const path = require("path");
 
 let isChecking = false;
 let checkInterval;
-let arpRecordMac = {};
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -119,15 +118,7 @@ function checkDuplicates(arpTable) {
       return;
     }
 
-    function CheckingSimilarityObjects(checkMacAddress) {
-      if (arpRecordMac.mac === checkMacAddress) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    if (count != 0 && CheckingSimilarityObjects(macAddress) === true) {
+    if (macDict[macAddress]) {
       macDict[macAddress].push(entry.ip);
       duplicates.push({ mac: macAddress, ips: macDict[macAddress] });
     } else {
@@ -135,7 +126,6 @@ function checkDuplicates(arpTable) {
     }
   });
 
-  count++;
   return duplicates;
 }
 
