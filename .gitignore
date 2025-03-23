@@ -4,8 +4,48 @@
 # Игнорировать папку node_modules
 /node_modules/
 
+# Игнорировать папку dist
 /dist/
 
 # Игнорировать временные файлы VS Code
 .vscode/
 .DS_Store
+
+# Игнорировать временные файлы C++
+*.obj
+*.o
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+*.pdb
+*.idb
+*.class
+
+# Игнорировать временные файлы компиляции
+*.tmp
+*.temp
+
+# Игнорировать временные файлы системы
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Игнорировать временные файлы редакторов
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Игнорировать временные файлы JetBrains IDEs
+.idea/
+*.iml
+
+# Игнорировать временные файлы npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Игнорировать временные файлы MacOS
+*.DS_Store
