@@ -1,3 +1,14 @@
 @import "./base/normalize";
 @import "./base/variables";
 @import "./base/font-styles";
+
+body {
+  display: grid;
+  grid-template: 20% 75% / 100%;
+  min-width: 95vw;
+  min-height: 100vh;
+  background-color: var(--bc-color);
+}
+
+@import "./blocks/header.scss";
+@import "./blocks/section-main.scss";

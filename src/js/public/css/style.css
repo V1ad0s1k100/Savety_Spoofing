@@ -190,4 +190,77 @@ svg * {
 }
 :root {
   --bc-color: #333;
+}
+
+body {
+  display: grid;
+  grid-template: 20% 75%/100%;
+  min-width: 95vw;
+  min-height: 100vh;
+  background-color: var(--bc-color);
+}
+
+.link {
+  text-decoration: none;
+  color: #000;
+}
+
+.header {
+  display: flex;
+  -moz-column-gap: clamp(10px, 5vw, 100px);
+       column-gap: clamp(10px, 5vw, 100px);
+  padding-top: 20px;
+  width: 80%;
+  margin-inline: auto;
+}
+.header .logo {
+  color: #fff;
+}
+.header .menu {
+  width: 80%;
+}
+.header .menu-list {
+  display: flex;
+  justify-content: space-between;
+}
+.header .menu-link {
+  padding: 10px;
+  color: #fff;
+}
+
+.btn {
+  display: flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+  border: none;
+  background-color: var(--bc-color);
+  padding: 10px;
+  color: #fff;
+}
+.logo-box {
+  height: 100px;
+  aspect-ratio: 1;
+}
+
+.main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+.main .section-info {
+  display: flex;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.btn-main {
+  background-color: #2d2d2d;
+  box-shadow: #1b1b1b 0px 0px 20px 8px;
+  border-radius: 100%;
+  width: 150px;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }/*# sourceMappingURL=style.css.map */

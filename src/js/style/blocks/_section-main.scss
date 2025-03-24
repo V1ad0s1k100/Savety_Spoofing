@@ -1,0 +1,25 @@
+.main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 70% 30%;
+
+  .section-info {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+}
+
+.btn {
+  &-main {
+    background-color: #2d2d2d;
+    box-shadow: #1b1b1b 0px 0px 20px 8px;
+    border-radius: 100%;
+    width: clamp(40px, 150px, 200px);
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+}
