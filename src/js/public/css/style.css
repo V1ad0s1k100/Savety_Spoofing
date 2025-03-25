@@ -189,78 +189,24 @@ svg * {
   }
 }
 :root {
-  --bc-color: #333;
+  --white: #fff;
+  --black: #000;
+  --alt-white: #e8eae6;
+  --alt-black: #22252a;
+  --gray-text: #a2a2a2;
+  --border-color: #2e3138;
+  --alt-border-color: #333;
+  --bor-rad: 30px;
+  --stick-bor-rad: 50px;
+  --cir-bor-rad: 100%;
+  --bor-width: 2px;
+  --alt-bor-width: 3px;
 }
 
-body {
-  display: grid;
-  grid-template: 20% 75%/100%;
-  min-width: 95vw;
-  min-height: 100vh;
-  background-color: var(--bc-color);
-}
-
-.link {
-  text-decoration: none;
-  color: #000;
-}
-
-.header {
-  display: flex;
-  -moz-column-gap: clamp(10px, 5vw, 100px);
-       column-gap: clamp(10px, 5vw, 100px);
-  padding-top: 20px;
-  width: 80%;
-  margin-inline: auto;
-}
-.header .logo {
-  color: #fff;
-}
-.header .menu {
-  width: 80%;
-}
-.header .menu-list {
-  display: flex;
-  justify-content: space-between;
-}
-.header .menu-link {
-  padding: 10px;
-  color: #fff;
-}
-
-.btn {
-  display: flex;
-  flex-shrink: 0;
-  white-space: nowrap;
-  border: none;
-  background-color: var(--bc-color);
-  padding: 10px;
-  color: #fff;
-}
-.logo-box {
-  height: 100px;
-  aspect-ratio: 1;
-}
-
-.main {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 70% 30%;
-}
-.main .section-info {
-  display: flex;
-  background-color: #fff;
-  border-radius: 10px;
-}
-
-.btn-main {
-  background-color: #2d2d2d;
-  box-shadow: #1b1b1b 0px 0px 20px 8px;
-  border-radius: 100%;
-  width: 150px;
-  aspect-ratio: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
+@font-face {
+  font-family: "MavenPro";
+  src: url("../fonts/MavenPro-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }/*# sourceMappingURL=style.css.map */

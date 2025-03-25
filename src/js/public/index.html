@@ -3,9 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Savety_Spoofing</title>
     <link rel="stylesheet" href="./css/style.css" />
     <script src="../src/renderer.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <button class="nav-btn" data-nav-btn>Ataks configurate</button>
+      </nav>
+      <div class="status-box">
+        <span>Status</span><span class="status" data-status>Good</span>
+        <div class="logs" data-logs></div>
+      </div>
+    </header>
+    <main class="main">
+      <section class="menu-bar">
+        <div class="setting" data-setting></div>
+        <div class="home" data-home></div>
+      </section>
+
+      <section class="btn-main">
+        <h1 class="status-loading" data-status-loading>Not Connected</h1>
+        <h2 class="working-time" data-working-time>-- -- : -- --</h2>
+        <button class="main-btn" data-main-btn>
+          <div class="switch"></div>
+        </button>
+      </section>
+
+      <section class="settings-bar">
+        <div class="stick"></div>
+        <nav class="nav-settings">
+          <button class="arp-spoofing-btn">
+            <span class="bullitts">
+              <p class="bullits-item"></p>
+              <p class="bullits-item"></p>
+              <p class="bullits-item"></p> </span
+            >ARP Spoofing
+          </button>
+          <button class="dhcp-spoofing-btn">
+            <span class="bullitts">
+              <p class="bullits-item"></p>
+              <p class="bullits-item"></p>
+              <p class="bullits-item"></p> </span
+            >DHCP Spoofing
+          </button>
+        </nav>
+      </section>
+
+      <section class="logs-bar"></section>
+    </main>
+  </body>
 </html>
