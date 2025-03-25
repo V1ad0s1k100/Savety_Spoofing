@@ -1,9 +1,9 @@
 :root {
   --white: #fff;
   --black: #000;
+  --gray: #a2a2a2;
   --alt-white: #e8eae6;
   --alt-black: #22252a;
-  --gray-text: #a2a2a2;
 
   --border-color: #2e3138;
   --alt-border-color: #333;
@@ -14,4 +14,14 @@
 
   --bor-width: 2px;
   --alt-bor-width: 3px;
+
+  --fon-fam: "MavenPro", sans-serif;
+
+  --fon-size-20: 20px;
+  --fon-size-25: 25px;
+  --fon-size-34: 34px;
+
+  --fon-weight: 400;
+
+  --transit: 0.2s;
 }

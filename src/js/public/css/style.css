@@ -191,9 +191,9 @@ svg * {
 :root {
   --white: #fff;
   --black: #000;
+  --gray: #a2a2a2;
   --alt-white: #e8eae6;
   --alt-black: #22252a;
-  --gray-text: #a2a2a2;
   --border-color: #2e3138;
   --alt-border-color: #333;
   --bor-rad: 30px;
@@ -201,6 +201,12 @@ svg * {
   --cir-bor-rad: 100%;
   --bor-width: 2px;
   --alt-bor-width: 3px;
+  --fon-fam: "MavenPro", sans-serif;
+  --fon-size-20: 20px;
+  --fon-size-25: 25px;
+  --fon-size-34: 34px;
+  --fon-weight: 400;
+  --transit: 0.2s;
 }
 
 @font-face {
@@ -209,4 +215,78 @@ svg * {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+}
+body {
+  background-color: #333;
+}
+
+.header {
+  width: 95vw;
+  margin-inline: auto;
+  display: grid;
+  grid-template: 100%/90% 10%;
+  padding-top: 10.37vh;
+}
+.header .nav {
+  margin-inline: auto;
+}
+.header .nav-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: var(--bor-rad);
+  border: solid var(--alt-black) var(--bor-width);
+  background-color: var(--black);
+  color: var(--alt-white);
+  font-family: var(--fon-fam);
+  font-size: clamp(15px, 18px, var(--fon-size-20));
+  font-weight: var(--fon-weight);
+  cursor: auto;
+  text-align: left;
+  padding-left: 35px;
+  padding-block: 12px;
+  width: clamp(300px, 33.32vw, 638px);
+}
+.header .nav-btn::after {
+  content: "";
+  position: relative;
+  top: 2px;
+  display: inline-block;
+  border: 5px solid transparent;
+  border-top: 7px solid var(--alt-white);
+  margin-right: 15px;
+}
+.header .status-box {
+  display: flex;
+  flex-direction: column;
+  width: -moz-max-content;
+  width: max-content;
+  row-gap: 30px;
+}
+.header .status-box div {
+  display: flex;
+  -moz-column-gap: 8px;
+       column-gap: 8px;
+}
+.header .status-box div span {
+  font-family: var(--fon-fam);
+  font-size: var(--fon-size-20);
+}
+.header .status-box div span:not(.status) {
+  color: var(--gray);
+  font-weight: var(--fon-weight);
+}
+.header .status-box .logs {
+  align-self: end;
+  width: 34px;
+  aspect-ratio: 1;
+  background-image: url("../img/History_Icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: #fff;
+  transition: var(--transit);
+}
+.header .status-box .logs:hover {
+  rotate: -20deg;
 }/*# sourceMappingURL=style.css.map */

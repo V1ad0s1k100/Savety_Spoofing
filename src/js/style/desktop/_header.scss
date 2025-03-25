@@ -1,0 +1,77 @@
+.header {
+  width: 95vw;
+  margin-inline: auto;
+  display: grid;
+  grid-template: 100% / 90% 10%;
+  padding-top: 10.37vh;
+
+  .nav {
+    margin-inline: auto;
+
+    &-btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: var(--bor-rad);
+      border: solid var(--alt-black) var(--bor-width);
+      background-color: var(--black);
+      color: var(--alt-white);
+      font-family: var(--fon-fam);
+      font-size: clamp(15px, 18px, var(--fon-size-20));
+      font-weight: var(--fon-weight);
+      cursor: auto;
+      text-align: left;
+      padding-left: clamp(25px, 35px, 43px);
+      padding-block: clamp(10px, 12px, 13px);
+      width: clamp(300px, 33.32vw, 638px);
+    }
+
+    &-btn::after {
+      content: "";
+      position: relative;
+      top: 2px;
+      display: inline-block;
+      border: 5px solid transparent;
+      border-top: 7px solid var(--alt-white);
+      margin-right: clamp(10px, 15px, 20px);
+    }
+  }
+
+  .status-box {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    row-gap: 30px;
+
+    div {
+      display: flex;
+      column-gap: 8px;
+
+      span {
+        font-family: var(--fon-fam);
+        font-size: var(--fon-size-20);
+      }
+
+      span:not(.status) {
+        color: var(--gray);
+        font-weight: var(--fon-weight);
+      }
+    }
+
+    .logs {
+      align-self: end;
+      width: 34px;
+      aspect-ratio: 1;
+      background-image: url("../img/History_Icon.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      color: #fff;
+      transition: var(--transit);
+    }
+
+    .logs:hover {
+      rotate: -20deg;
+    }
+  }
+}
