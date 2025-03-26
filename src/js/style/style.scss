@@ -2,9 +2,9 @@
 @import "./base/variables";
 @import "./base/font-styles";
 
-// body {
-//   background-color: #333;
-// }
+* {
+  user-select: none;
+}
 
 @import "./desktop/header.scss";
 @import "./desktop/section-main.scss";

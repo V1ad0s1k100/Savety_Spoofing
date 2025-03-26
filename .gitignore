@@ -2,10 +2,10 @@
 *.log
 
 # Игнорировать папку node_modules
-/node_modules/
+node_modules
 
 # Игнорировать папку dist
-/dist/
+dist
 
 # Игнорировать временные файлы VS Code
 .vscode/
