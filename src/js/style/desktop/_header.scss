@@ -5,10 +5,14 @@
   grid-template: 100% / 90% 10%;
   padding-top: 10.37vh;
 
-  .nav {
-    margin-inline: auto;
+  @media (max-width: 1200px) {
+    grid-template: 100% / 80% 20%;
+  }
 
+  .nav {
     &-btn {
+      position: absolute;
+      right: 33%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
