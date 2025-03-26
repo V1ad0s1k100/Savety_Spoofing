@@ -20,7 +20,6 @@
       font-family: var(--fon-fam);
       font-size: clamp(15px, 18px, var(--fon-size-20));
       font-weight: var(--fon-weight);
-      cursor: auto;
       text-align: left;
       padding-left: clamp(25px, 35px, 43px);
       padding-block: clamp(10px, 12px, 13px);
@@ -72,6 +71,7 @@
 
     .logs:hover {
       rotate: -20deg;
+      scale: 1.1;
     }
   }
 }

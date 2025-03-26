@@ -216,10 +216,6 @@ svg * {
   font-style: normal;
   font-display: swap;
 }
-body {
-  background-color: #333;
-}
-
 .header {
   width: 95vw;
   margin-inline: auto;
@@ -242,7 +238,6 @@ body {
   font-family: var(--fon-fam);
   font-size: clamp(15px, 18px, var(--fon-size-20));
   font-weight: var(--fon-weight);
-  cursor: auto;
   text-align: left;
   padding-left: 35px;
   padding-block: 12px;
@@ -289,4 +284,95 @@ body {
 }
 .header .status-box .logs:hover {
   rotate: -20deg;
+  scale: 1.1;
+}
+
+.main {
+  display: grid;
+  grid-template: 50% 50%/repeat(3, 1fr);
+  min-height: clamp(300px, 41.2vh, 450px);
+  margin-top: 64px;
+}
+.main .menu-bar > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: 47px;
+  background-color: var(--black);
+  width: 50px;
+  height: 177px;
+  border-radius: var(--bor-rad);
+  margin-left: clamp(34px, 2.81vw, 54px);
+}
+.main .menu-bar > div .menu-bar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main .menu-bar > div .menu-bar__item .setting {
+  background-image: url("../img/Settings_Icon.svg");
+  background-size: contain;
+  transition: calc(var(--transit) + 0.2s);
+  width: 20px;
+  aspect-ratio: 1;
+}
+.main .menu-bar > div .menu-bar__item .setting:hover {
+  rotate: -90deg;
+  scale: 1.1;
+}
+.main .menu-bar > div .menu-bar__item .home {
+  background-image: url("../img/Home_Icon.svg");
+  background-size: contain;
+  transition: var(--transit);
+  width: 20px;
+  aspect-ratio: 1;
+}
+.main .menu-bar > div .menu-bar__item .home:hover {
+  scale: 1.1;
+}
+.main .menu-bar > div .circle {
+  width: 4px;
+  aspect-ratio: 1;
+  margin-top: 4px;
+}
+.main .menu-bar > div .menu-bar__focus {
+  background-color: var(--white);
+  border-radius: var(--cir-bor-rad);
+}
+.main .btn-main {
+  display: flex;
+  flex-direction: column;
+  row-gap: 18px;
+  align-items: center;
+}
+.main .btn-main .status-loading {
+  font-family: var(--fon-fam);
+  font-size: var(--fon-size-34);
+  font-weight: var(--fon-weight);
+  text-align: center;
+  margin-bottom: 5px;
+}
+.main .btn-main .working-time {
+  font-family: var(--fon-fam);
+  font-size: var(--fon-size-34);
+}
+.main .btn-main .main-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid var(--black) var(--bor-width);
+  border-radius: var(--cir-bor-rad);
+  width: clamp(60px, 5.21vw, 100px);
+  aspect-ratio: 1;
+  background-color: transparent;
+}
+.main .btn-main .main-btn .switch {
+  width: clamp(18px, 1.3vw, 25px);
+  aspect-ratio: 1;
+  background-image: url("../img/Switch.svg");
+  background-size: contain;
+}
+
+.settings-bar {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
