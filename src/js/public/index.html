@@ -8,17 +8,6 @@
     <script src="../src/renderer.js" defer></script>
   </head>
   <body>
-    <header class="header">
-      <nav class="nav">
-        <button class="nav-btn" data-nav-btn>Ataks configurate</button>
-      </nav>
-      <div class="status-box">
-        <div>
-          <span>Status: </span><span class="status" data-status>Good</span>
-        </div>
-        <div class="logs" data-logs></div>
-      </div>
-    </header>
     <main class="main">
       <section class="menu-bar">
         <div>
@@ -37,34 +26,48 @@
       </section>
 
       <section class="btn-main">
-        <h1 class="status-loading" data-status-loading>Not Connected</h1>
-        <h2 class="working-time" data-working-time>-- -- : -- --</h2>
-        <button class="main-btn" data-main-btn>
-          <div class="switch"></div>
-        </button>
+        <button class="nav-btn" data-nav-btn>Ataks configurate</button>
+        <div>
+          <h1 class="status-loading" data-status-loading>Not Connected</h1>
+          <h2 class="working-time" data-working-time>-- : -- : --</h2>
+          <button class="main-btn" data-main-btn>
+            <div class="switch"></div>
+          </button>
+        </div>
       </section>
 
-      <section class="settings-bar">
-        <div class="stick"></div>
+      <section class="logs">
+        <div class="status-box">
+          <span>Status: </span>
+          <span class="status" data-status>Good</span>
+        </div>
+
+        <div class="logs-history" data-logs-history></div>
+
+        <section class="logs-bar" data-logs-bar></section>
+      </section>
+
+      <section class="settings-bar" data-settings-bar>
+        <div class="stick" data-stick-close></div>
         <nav class="nav-settings">
           <button class="arp-spoofing-btn">
-            <span class="bullitts">
-              <p class="bullits-item"></p>
-              <p class="bullits-item"></p>
-              <p class="bullits-item"></p> </span
-            >ARP Spoofing
+            <div class="bullitts">
+              <span class="bullits-item"></span>
+              <span class="bullits-item"></span>
+              <span class="bullits-item"></span>
+            </div>
+            <span class="title-spoof">ARP Spoofing</span>
           </button>
           <button class="dhcp-spoofing-btn">
-            <span class="bullitts">
-              <p class="bullits-item"></p>
-              <p class="bullits-item"></p>
-              <p class="bullits-item"></p> </span
-            >DHCP Spoofing
+            <div class="bullitts">
+              <span class="bullits-item"></span>
+              <span class="bullits-item"></span>
+              <span class="bullits-item"></span>
+            </div>
+            <span class="title-spoof">DHCP Spoofing</span>
           </button>
         </nav>
       </section>
-
-      <section class="logs-bar"></section>
     </main>
   </body>
 </html>
