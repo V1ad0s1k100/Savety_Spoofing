@@ -213,6 +213,7 @@
   border: solid var(--alt-bor-color) var(--bor-width);
   border-radius: calc(var(--bor-rad) + 10px) calc(var(--bor-rad) + 10px) 0 0;
   padding: 15px 63px;
+  transition: calc(var(--transit) + 0.4s);
 
   .stick {
     width: 50px;
