@@ -162,6 +162,7 @@
   .status-box {
     span {
       font-family: var(--fon-fam);
+      font-weight: calc(var(--fon-weight) + 200);
     }
 
     span:first-child {

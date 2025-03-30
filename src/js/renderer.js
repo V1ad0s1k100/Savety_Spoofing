@@ -22,9 +22,10 @@ btnOpenConfigElement.addEventListener("click", () => {
 const dateElement = document.querySelector("[data-working-time]");
 const mainBtnElement = document.querySelector("[data-main-btn]");
 const loadingStatusElement = document.querySelector("[data-status-loading]");
+const statusTitleElement = document.querySelector("[data-status]");
 
-let arpCheck = null;
 let timer = null;
+let arpCheck = null;
 
 mainBtnElement.addEventListener("click", () => {
   if (timer === null) {
@@ -44,22 +45,30 @@ mainBtnElement.addEventListener("click", () => {
 
     loadingStatusElement.textContent = "There is an analysis";
 
-    // Запускаем Python-скрипт при нажатии кнопки
-
+    // Запускаем цикл вызовов Python-скрипта при нажатии кнопки
     arpCheck = setInterval(async () => {
-      const result = await window.pythonAPI.runScript("src/python/ARP/ARP.py");
-      console.log("Result:", result);
-    }, 1000);
+      let result = (await window.pythonAPI.runScript("src/python/ARP/ARP.py"))
+        .replace("[", "")
+        .replace("]", "")
+        .replaceAll("'", "")
+        .split(",");
 
-    // Данные в реальном времени от Python
-    window.pythonAPI.onPythonData((event, data) => {
-      console.log("Get data in real time:", data);
-    });
+      statusTitleElement.textContent = result[1];
+      logsBar.textContent += result[0];
+      if (result[1] === "Warning") {
+        statusTitleElement.style.color = "red";
+      } else if (result[1] === "Error") {
+        statusTitleElement.style.color = "red";
+      } else {
+        statusTitleElement.style.color = "#429442";
+      }
+    }, 1500);
   } else {
     clearInterval(arpCheck);
     arpCheck = null;
     clearInterval(timer);
     timer = null;
+    statusTitleElement.textContent = "";
     dateElement.textContent = "00:00:00";
     loadingStatusElement.textContent = "Analysis stopped";
   }
