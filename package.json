@@ -11,5 +11,12 @@
   "description": "",
   "devDependencies": {
     "electron": "^35.1.0"
+  },
+  "build": {
+    "files": [
+      "main.js",
+      "public/**/*",
+      "src/**/*"
+    ]
   }
 }

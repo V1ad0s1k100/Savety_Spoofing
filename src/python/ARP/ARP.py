@@ -1,3 +1,4 @@
+# import os
 from arp_table import *
 from checkup_dub import *
 
@@ -5,9 +6,9 @@ def Savety_ARP():
     global text1
     global text2
     arp_table = get_arp_table() 
-    duplicates = check_duplicates(arp_table) 
+    duplicates = check_duplicates(arp_table)
     if duplicates:
-        text1 = "Найден дубликат MAC-адреса:" + str(duplicates)
+        text1 = "A duplicate of the MAC address was found:" + str(duplicates)
         text2 = 'Warning'
         try:
             if platform.system() == "Windows":
@@ -15,11 +16,11 @@ def Savety_ARP():
             if platform.system() == "Linux":
                 os.system("sudo ip link set dev wlan0 down") 
         except Exception as e:
-            text1 = f"Ошибка при отключении интернета: {e}"
+            text1 = f"Error when turning off the Internet: {e}"
             text2 = ''
     else:
-        text1 = "Good"
-        text2 = ''
+        text1 = ""
+        text2 = "Good"
     
     # Возвращаем значения для логирования
     return text1, text2

@@ -1,4 +1,7 @@
 const { app, BrowserWindow } = require("electron");
+const { ipcMain } = require("electron");
+const { spawn } = require("child_process");
+const path = require("path");
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -7,17 +10,11 @@ const createWindow = () => {
     minWidth: 800,
     minHeight: 600,
     webPreferences: {
-      devTools: true, // Включаем DevTools
-      nodeIntegration: true, // Включает Node.js API в Renderer Process
-      contextIsolation: false, // Отключает изоляцию контекста (для совместимости)
+      preload: path.join(__dirname, "./src/js/preload.js"), // Убедитесь, что путь корректен
     },
   });
 
   mainWindow.loadFile("./public/index.html");
-  mainWindow.setMenu(null);
-
-  // Открываем DevTools
-  mainWindow.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {
@@ -30,4 +27,36 @@ app.whenReady().then(() => {
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
+});
+
+// Обработка запросов ARP
+
+ipcMain.handle("python-run", (event, scriptPath) => {
+  return new Promise((resolve, reject) => {
+    const pythonProcess = spawn("python", [scriptPath]);
+
+    let result = "";
+    let error = "";
+
+    // Получение данных из Python
+    pythonProcess.stdout.on("data", (data) => {
+      const output = data.toString();
+      result += output;
+
+      // Отправка данных в реальном времени в рендерный процесс
+      event.sender.send("python-data", output.trim());
+    });
+
+    pythonProcess.stderr.on("data", (data) => {
+      error += data.toString();
+    });
+
+    pythonProcess.on("close", (code) => {
+      if (code !== 0 || error) {
+        reject(error || `Process exited with code ${code}`);
+      } else {
+        resolve(result);
+      }
+    });
+  });
 });

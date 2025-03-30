@@ -23,9 +23,10 @@ const dateElement = document.querySelector("[data-working-time]");
 const mainBtnElement = document.querySelector("[data-main-btn]");
 const loadingStatusElement = document.querySelector("[data-status-loading]");
 
+let arpCheck = null;
 let timer = null;
 
-mainBtnElement.addEventListener("click", async () => {
+mainBtnElement.addEventListener("click", () => {
   if (timer === null) {
     dateElement.textContent = "00:00:01";
     let seconds = 1;
@@ -44,10 +45,19 @@ mainBtnElement.addEventListener("click", async () => {
     loadingStatusElement.textContent = "There is an analysis";
 
     // Запускаем Python-скрипт при нажатии кнопки
-    console.log(window.nodeAPI);
 
-    await Window.nodeAPI.runPythonScript();
+    arpCheck = setInterval(async () => {
+      const result = await window.pythonAPI.runScript("src/python/ARP/ARP.py");
+      console.log("Result:", result);
+    }, 1000);
+
+    // Данные в реальном времени от Python
+    window.pythonAPI.onPythonData((event, data) => {
+      console.log("Get data in real time:", data);
+    });
   } else {
+    clearInterval(arpCheck);
+    arpCheck = null;
     clearInterval(timer);
     timer = null;
     dateElement.textContent = "00:00:00";
