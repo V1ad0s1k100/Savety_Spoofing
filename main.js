@@ -1,5 +1,4 @@
 const { app, BrowserWindow } = require("electron");
-const path = require("node:path");
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -7,10 +6,18 @@ const createWindow = () => {
     height: 600,
     minWidth: 800,
     minHeight: 600,
+    webPreferences: {
+      devTools: true, // Включаем DevTools
+      nodeIntegration: true, // Включает Node.js API в Renderer Process
+      contextIsolation: false, // Отключает изоляцию контекста (для совместимости)
+    },
   });
 
   mainWindow.loadFile("./public/index.html");
   mainWindow.setMenu(null);
+
+  // Открываем DevTools
+  mainWindow.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {

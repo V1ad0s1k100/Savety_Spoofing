@@ -7,8 +7,6 @@ historyElement.addEventListener("click", () => {
   logsBar.classList.toggle("logs-bar-block");
 });
 
-// =================================================
-
 const stickCloseConfigElement = document.querySelector("[data-stick-close]");
 const settingsBarElement = document.querySelector("[data-settings-bar]");
 const btnOpenConfigElement = document.querySelector("[data-nav-btn]");
@@ -21,17 +19,13 @@ btnOpenConfigElement.addEventListener("click", () => {
   settingsBarElement.style.display = "flex";
 });
 
-// =================================
-
 const dateElement = document.querySelector("[data-working-time]");
-
 const mainBtnElement = document.querySelector("[data-main-btn]");
 const loadingStatusElement = document.querySelector("[data-status-loading]");
 
-let timeCount = 0;
 let timer = null;
 
-mainBtnElement.addEventListener("click", () => {
+mainBtnElement.addEventListener("click", async () => {
   if (timer === null) {
     dateElement.textContent = "00:00:01";
     let seconds = 1;
@@ -48,6 +42,11 @@ mainBtnElement.addEventListener("click", () => {
     }, 1000);
 
     loadingStatusElement.textContent = "There is an analysis";
+
+    // Запускаем Python-скрипт при нажатии кнопки
+    console.log(window.nodeAPI);
+
+    await Window.nodeAPI.runPythonScript();
   } else {
     clearInterval(timer);
     timer = null;
