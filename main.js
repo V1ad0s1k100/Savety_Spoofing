@@ -10,7 +10,7 @@ const createWindow = () => {
     minWidth: 800,
     minHeight: 600,
     webPreferences: {
-      preload: path.join(__dirname, "./src/js/preload.js"), // Убедитесь, что путь корректен
+      preload: path.join(__dirname, "./src/js/preload.js"),
     },
   });
 
@@ -40,23 +40,19 @@ ipcMain.handle("python-run", (event, scriptPath) => {
 
     // Получение данных из Python
     pythonProcess.stdout.on("data", (data) => {
-      const output = data.toString();
-      result += output;
+      result += data;
 
-      // Отправка данных в реальном времени в рендерный процесс
-      event.sender.send("python-data", output.trim());
-    });
+      pythonProcess.stderr.on("data", (data) => {
+        error += data;
+      });
 
-    pythonProcess.stderr.on("data", (data) => {
-      error += data.toString();
-    });
-
-    pythonProcess.on("close", (code) => {
-      if (code !== 0 || error) {
-        reject(error || `Process exited with code ${code}`);
-      } else {
-        resolve(result);
-      }
+      pythonProcess.on("close", (code) => {
+        if (code !== 0 || error) {
+          reject(error || `Process exited with code ${code}`);
+        } else {
+          resolve(result);
+        }
+      });
     });
   });
 });

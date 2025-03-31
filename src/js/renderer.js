@@ -53,8 +53,8 @@ mainBtnElement.addEventListener("click", () => {
         .replaceAll("'", "")
         .split(",");
 
+      logsBar.textContent += result[0] + "\n";
       statusTitleElement.textContent = result[1];
-      logsBar.textContent += result[0];
       if (result[1] === "Warning") {
         statusTitleElement.style.color = "red";
       } else if (result[1] === "Error") {
@@ -68,7 +68,10 @@ mainBtnElement.addEventListener("click", () => {
     arpCheck = null;
     clearInterval(timer);
     timer = null;
-    statusTitleElement.textContent = "";
+    setTimeout(() => {
+      statusTitleElement.textContent = "";
+    }, 1550);
+
     dateElement.textContent = "00:00:00";
     loadingStatusElement.textContent = "Analysis stopped";
   }

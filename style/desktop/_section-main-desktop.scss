@@ -186,15 +186,26 @@
   &-bar {
     display: none;
     width: clamp(100px, 200px, 100%);
-    height: max-content;
+    height: 200px;
+    overflow-y: auto;
     background-color: var(--gray);
     border-radius: 5px;
     padding: 27px;
     transition: var(--transit);
+    font-family: var(--fon-fam);
 
     &-block {
       display: block;
     }
+  }
+
+  &-bar::-webkit-scrollbar {
+    width: 6px; /* ширина scrollbar */
+  }
+  &-bar::-webkit-scrollbar-thumb {
+    background-color: var(--border-color); /* цвет плашки */
+    border-radius: 20px; /* закругления плашки */
+    border: var(--bor-width) solid var(--black); /* padding вокруг плашки */
   }
 }
 
