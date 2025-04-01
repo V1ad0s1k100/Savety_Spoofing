@@ -5,7 +5,7 @@ from checkup_dub import *
 def Savety_ARP():
     global text1
     global text2
-    arp_table = get_arp_table() 
+    arp_table = get_arp_table()
     duplicates = check_duplicates(arp_table)
     if duplicates:
         text1 = "A duplicate of the MAC address was found:" + str(duplicates)

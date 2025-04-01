@@ -26,9 +26,23 @@ const statusTitleElement = document.querySelector("[data-status]");
 
 let timer = null;
 let arpCheck = null;
+let dhcpCheck = null;
+let mode = "";
+
+const arpSpoofingBtn = document.querySelector("[data-arp-spoofing-btn]");
+const dhcpSpoofingBtn = document.querySelector("[data-dhcp-spoofing-btn]");
+const mainBtn = document.querySelector("[data-main-btn]");
+
+arpSpoofingBtn.addEventListener("click", () => {
+  mode = "ARP";
+});
+
+dhcpSpoofingBtn.addEventListener("click", () => {
+  mode = "DHCP";
+});
 
 mainBtnElement.addEventListener("click", () => {
-  if (timer === null) {
+  if (!timer && mode !== "") {
     dateElement.textContent = "00:00:01";
     let seconds = 1;
 
@@ -46,32 +60,57 @@ mainBtnElement.addEventListener("click", () => {
     loadingStatusElement.textContent = "There is an analysis";
 
     // Запускаем цикл вызовов Python-скрипта при нажатии кнопки
-    arpCheck = setInterval(async () => {
-      let result = (await window.pythonAPI.runScript("src/python/ARP/ARP.py"))
-        .replace("[", "")
-        .replace("]", "")
-        .replaceAll("'", "")
-        .split(",");
+    if (mode === "ARP") {
+      arpCheck = setInterval(async () => {
+        let result = (await window.pythonAPI.runScript("src/python/ARP/ARP.py"))
+          .replace("[", "")
+          .replace("]", "")
+          .replaceAll("'", "")
+          .split(",");
 
-      logsBar.textContent += result[0] + "\n";
-      statusTitleElement.textContent = result[1];
-      if (result[1] === "Warning") {
-        statusTitleElement.style.color = "red";
-      } else if (result[1] === "Error") {
-        statusTitleElement.style.color = "red";
-      } else {
-        statusTitleElement.style.color = "#429442";
-      }
-    }, 1500);
+        logsBar.textContent += result[0] + "\n";
+        statusTitleElement.textContent = result[1];
+        if (result[1] === "Warning") {
+          statusTitleElement.style.color = "red";
+        } else if (result[1] === "Error") {
+          statusTitleElement.style.color = "red";
+        } else {
+          statusTitleElement.style.color = "#429442";
+        }
+      }, 1500);
+    }
+    if (mode === "DHCP") {
+      console.log("DHCP mode was selected");
+      // dhcpCheck = setInterval(async () => {
+      //   let result = (
+      //     await window.pythonAPI.runScript("src/python/DHCP/DHCP.py")
+      //   )
+      //     .replace("[", "")
+      //     .replace("]", "")
+      //     .replaceAll("'", "")
+      //     .split(",");
+
+      //   logsBar.textContent += result[0] + "\n";
+      //   statusTitleElement.textContent = result[1];
+      //   if (result[1] === "Warning") {
+      //     statusTitleElement.style.color = "red";
+      //   } else if (result[1] === "Error") {
+      //     statusTitleElement.style.color = "red";
+      //   } else {
+      //     statusTitleElement.style.color = "#429442";
+      //   }
+      // }, 1500);
+    }
   } else {
     clearInterval(arpCheck);
-    arpCheck = null;
+    clearInterval(dhcpCheck);
     clearInterval(timer);
+    arpCheck = null;
+    dhcpCheck = null;
     timer = null;
     setTimeout(() => {
       statusTitleElement.textContent = "";
     }, 1550);
-
     dateElement.textContent = "00:00:00";
     loadingStatusElement.textContent = "Analysis stopped";
   }
