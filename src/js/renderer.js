@@ -11,16 +11,18 @@ historyElement.addEventListener("click", () => {
 
 // Блок с выбором защиты
 
-const stickCloseConfigElement = document.querySelector("[data-stick-close]");
 const settingsBarElement = document.querySelector("[data-settings-bar]");
 const btnOpenConfigElement = document.querySelector("[data-nav-btn]");
-
-stickCloseConfigElement.addEventListener("click", () => {
-  settingsBarElement.style.display = "none";
-});
+let btnOpenConfigCount = 0;
 
 btnOpenConfigElement.addEventListener("click", () => {
-  settingsBarElement.style.display = "flex";
+  if (btnOpenConfigCount % 2 === 0) {
+    settingsBarElement.style.display = "flex";
+    settingsBarElement.style.animation = "appearance_from_below 0.1s linear";
+  } else {
+    settingsBarElement.style.display = "none";
+  }
+  btnOpenConfigCount++;
 });
 
 // Блок главной кнопки, таймера и статуса
@@ -41,10 +43,14 @@ const mainBtn = document.querySelector("[data-main-btn]");
 
 arpSpoofingBtn.addEventListener("click", () => {
   mode = "ARP";
+  settingsBarElement.style.display = "none";
+  btnOpenConfigCount++;
 });
 
 dhcpSpoofingBtn.addEventListener("click", () => {
   mode = "DHCP";
+  settingsBarElement.style.display = "none";
+  btnOpenConfigCount++;
 });
 
 mainBtnElement.addEventListener("click", () => {
@@ -68,12 +74,8 @@ mainBtnElement.addEventListener("click", () => {
     // Запускаем цикл вызовов Python-скрипта при нажатии кнопки
 
     if (mode === "ARP") {
-      console.log("ARP");
-
       arpCheck = setInterval(async () => {
-        let result = (
-          await window.pythonAPI.runScriptARP("src/python/ARP/ARP.py")
-        )
+        let result = (await window.pythonAPI.runScript("src/python/ARP/ARP.py"))
           .replace("[", "")
           .replace("]", "")
           .replaceAll("'", "")
@@ -92,13 +94,9 @@ mainBtnElement.addEventListener("click", () => {
     }
     if (mode === "DHCP") {
       dhcpCheck = setInterval(async () => {
-        let result = await window.pythonAPI.runScriptDHCP(
+        let result = await window.pythonAPI.runScript(
           "src/python/DHCP/DHCP.py"
         );
-
-        console.log(result);
-
-        logsBar.textContent += result + "\n";
       }, 1500);
     }
   } else {

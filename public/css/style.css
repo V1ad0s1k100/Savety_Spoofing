@@ -192,6 +192,7 @@ svg * {
   --white: #fff;
   --black: #000;
   --gray: #a2a2a2;
+  --gray-light: rgba(163, 163, 163, 0.2);
   --alt-white: #e8eae6;
   --alt-black: #22252a;
   --border-color: #2e3138;
@@ -224,6 +225,7 @@ svg * {
 
 .main {
   position: relative;
+  overflow: hidden;
   display: grid;
   grid-template: 100%/20% 50% 30%;
   min-height: 100vh;
@@ -308,6 +310,9 @@ svg * {
   padding-block: 12px;
   width: clamp(300px, 33.32vw, 638px);
 }
+.main .btn-main .nav-btn:hover::after {
+  transform: rotate(90deg);
+}
 .main .btn-main .nav-btn::after {
   content: "";
   position: relative;
@@ -316,6 +321,8 @@ svg * {
   border: 5px solid transparent;
   border-top: 7px solid var(--alt-white);
   margin-right: 15px;
+  transition: var(--transit);
+  rotate: -90deg;
 }
 .main .btn-main .status-loading {
   font-family: var(--fon-fam);
@@ -380,8 +387,8 @@ svg * {
   width: clamp(100px, 200px, 100%);
   height: 200px;
   overflow-y: auto;
-  background-color: var(--gray);
-  border-radius: 5px;
+  background-color: var(--gray-light);
+  border-radius: 8px;
   padding: 27px;
   transition: var(--transit);
   font-family: var(--fon-fam);
@@ -398,39 +405,42 @@ svg * {
   border: var(--bor-width) solid var(--black); /* padding вокруг плашки */
 }
 
+@keyframes appearance_from_below {
+  0% {
+    width: 50vw;
+    height: 0vh;
+    row-gap: 31px;
+    bottom: 0;
+    left: 25%;
+    padding: 15px 63px;
+  }
+  50% {
+    height: 20vh;
+  }
+  100% {
+    width: 50vw;
+    height: 40vh;
+  }
+}
 .settings-bar {
   position: absolute;
   display: none;
-  flex-direction: column;
+  width: 50vw;
+  height: 40vh;
   row-gap: 31px;
   bottom: 0;
   left: 25%;
-  width: 50vw;
-  height: 40vh;
-  min-height: -moz-max-content;
-  min-height: max-content;
-  background-color: var(--black);
+  padding: 15px 63px;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.8);
   border: solid var(--alt-bor-color) var(--bor-width);
   border-radius: calc(var(--bor-rad) + 10px) calc(var(--bor-rad) + 10px) 0 0;
-  padding: 15px 63px;
-  transition: calc(var(--transit) + 0.4s);
-}
-.settings-bar .stick {
-  width: 50px;
-  height: 14px;
-  border: solid var(--black) 5px;
-  background-color: var(--white);
-  border-radius: var(--bor-rad);
-  margin-inline: auto;
-  transition: var(--transit);
-}
-.settings-bar .stick:hover {
-  background-color: var(--gray);
 }
 .settings-bar .nav-settings {
   display: flex;
   flex-direction: column;
   row-gap: 23px;
+  margin-top: 20px;
 }
 .settings-bar .arp-spoofing-btn,
 .settings-bar .dhcp-spoofing-btn {
@@ -445,6 +455,11 @@ svg * {
   font-family: var(--fon-fam);
   font-size: 25px;
   font-weight: var(--fon-weight);
+  transition: 0.1s;
+}
+.settings-bar .arp-spoofing-btn:hover,
+.settings-bar .dhcp-spoofing-btn:hover {
+  box-shadow: inset 0px 0px 10px var(--black);
 }
 .settings-bar .arp-spoofing-btn .title-spoof,
 .settings-bar .dhcp-spoofing-btn .title-spoof {
