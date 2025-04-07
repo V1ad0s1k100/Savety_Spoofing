@@ -85,8 +85,6 @@ mainBtnElement.addEventListener("click", () => {
         statusTitleElement.textContent = result[1];
         if (result[1] === "Warning") {
           statusTitleElement.style.color = "red";
-        } else if (result[1] === "Error") {
-          statusTitleElement.style.color = "red";
         } else {
           statusTitleElement.style.color = "#429442";
         }

@@ -7,12 +7,14 @@ def Savety_ARP():
     global text2
     arp_table = get_arp_table()
     duplicates = check_duplicates(arp_table)
-    if duplicates:
-        text1 = str(duplicates)
-        text2 = "Warning"
+    
+    if duplicates != []:
         try:
             if platform.system() == "Windows":
                 os.system("ipconfig /release >nul 2>&1")
+            for i in range(len(duplicates) - 1):
+                text1 += f"{duplicates[i]}"
+            text2 = "Warning"
         except Exception as e:
             text1 = f"Error when turning off the Internet: {e}"
             text2 = "Error"
@@ -20,7 +22,6 @@ def Savety_ARP():
         text1 = ""
         text2 = "Good"
 
-    # Возвращаем значения для логирования
     return text1, text2
 
 if __name__ == "__main__":
