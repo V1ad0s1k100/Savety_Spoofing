@@ -18,7 +18,7 @@ let btnOpenConfigCount = 0;
 btnOpenConfigElement.addEventListener("click", () => {
   if (btnOpenConfigCount % 2 === 0) {
     settingsBarElement.style.display = "flex";
-    settingsBarElement.style.animation = "appearance_from_below 0.1s linear";
+    settingsBarElement.style.animation = "appearance_from_below 0.2s ease-out";
   } else {
     settingsBarElement.style.display = "none";
   }

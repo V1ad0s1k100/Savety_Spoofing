@@ -14,6 +14,8 @@ const createWindow = () => {
     },
   });
 
+  mainWindow.setMenu(null); // Отключение верхнего меню
+
   mainWindow.loadFile("./public/index.html");
 };
 

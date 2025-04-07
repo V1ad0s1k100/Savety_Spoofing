@@ -14,14 +14,19 @@
   "devDependencies": {
     "@electron/fuses": "^1.8.0",
     "electron": "^35.1.0",
-    "electron-packager": "^17.1.0",
-    "electron-builder": "^24.6.0"
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.0"
   },
   "build": {
     "productName": "Savety_Spoofing",
     "directories": {
       "output": "dist"
     },
+    "files": [
+      "main.js",
+      "public/**/*",
+      "src/python/**/*"
+    ],
     "win": {
       "target": "nsis"
     }
