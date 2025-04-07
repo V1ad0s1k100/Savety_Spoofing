@@ -1,3 +1,5 @@
+// Блок с логами
+
 const historyElement = document.querySelector("[data-logs-history]");
 const logsBar = document.querySelector("[data-logs-bar]");
 
@@ -6,6 +8,8 @@ let historyCount = 0;
 historyElement.addEventListener("click", () => {
   logsBar.classList.toggle("logs-bar-block");
 });
+
+// Блок с выбором защиты
 
 const stickCloseConfigElement = document.querySelector("[data-stick-close]");
 const settingsBarElement = document.querySelector("[data-settings-bar]");
@@ -18,6 +22,8 @@ stickCloseConfigElement.addEventListener("click", () => {
 btnOpenConfigElement.addEventListener("click", () => {
   settingsBarElement.style.display = "flex";
 });
+
+// Блок главной кнопки, таймера и статуса
 
 const dateElement = document.querySelector("[data-working-time]");
 const mainBtnElement = document.querySelector("[data-main-btn]");
@@ -60,9 +66,14 @@ mainBtnElement.addEventListener("click", () => {
     loadingStatusElement.textContent = "There is an analysis";
 
     // Запускаем цикл вызовов Python-скрипта при нажатии кнопки
+
     if (mode === "ARP") {
+      console.log("ARP");
+
       arpCheck = setInterval(async () => {
-        let result = (await window.pythonAPI.runScript("src/python/ARP/ARP.py"))
+        let result = (
+          await window.pythonAPI.runScriptARP("src/python/ARP/ARP.py")
+        )
           .replace("[", "")
           .replace("]", "")
           .replaceAll("'", "")
@@ -80,26 +91,15 @@ mainBtnElement.addEventListener("click", () => {
       }, 1500);
     }
     if (mode === "DHCP") {
-      console.log("DHCP mode was selected");
-      // dhcpCheck = setInterval(async () => {
-      //   let result = (
-      //     await window.pythonAPI.runScript("src/python/DHCP/DHCP.py")
-      //   )
-      //     .replace("[", "")
-      //     .replace("]", "")
-      //     .replaceAll("'", "")
-      //     .split(",");
+      dhcpCheck = setInterval(async () => {
+        let result = await window.pythonAPI.runScriptDHCP(
+          "src/python/DHCP/DHCP.py"
+        );
 
-      //   logsBar.textContent += result[0] + "\n";
-      //   statusTitleElement.textContent = result[1];
-      //   if (result[1] === "Warning") {
-      //     statusTitleElement.style.color = "red";
-      //   } else if (result[1] === "Error") {
-      //     statusTitleElement.style.color = "red";
-      //   } else {
-      //     statusTitleElement.style.color = "#429442";
-      //   }
-      // }, 1500);
+        console.log(result);
+
+        logsBar.textContent += result + "\n";
+      }, 1500);
     }
   } else {
     clearInterval(arpCheck);

@@ -8,13 +8,11 @@ def Savety_ARP():
     arp_table = get_arp_table()
     duplicates = check_duplicates(arp_table)
     if duplicates:
-        text1 = "A duplicate of the MAC address was found:" + str(duplicates)
+        text1 = "A duplicate of the MAC address was found: " + str(duplicates)
         text2 = "Warning"
         try:
             if platform.system() == "Windows":
                 os.system("ipconfig /release")
-            if platform.system() == "Linux":
-                os.system("sudo ip link set dev wlan0 down") 
         except Exception as e:
             text1 = f"Error when turning off the Internet: {e}"
             text2 = "Error"

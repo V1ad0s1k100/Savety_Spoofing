@@ -1,5 +1,6 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("pythonAPI", {
-  runScript: (scriptPath) => ipcRenderer.invoke("python-run", scriptPath),
+  runScriptARP: (scriptPath) => ipcRenderer.invoke("python-run", scriptPath),
+  runScriptDHCP: (scriptPath) => ipcRenderer.invoke("python-run", scriptPath),
 });
