@@ -1,7 +1,14 @@
+# Игнорировать файлы логов
 *.log
-node_modules
-dist
-out
+
+# Игнорировать папки и файлы сборки
+node_modules/
+dist/
+out/
+
+# Игнорировать стили и карты стилей
+style/
+style.css.map
 
 # Игнорировать временные файлы VS Code
 .vscode/
@@ -32,4 +39,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # Игнорировать временные файлы MacOS
-*.DS_Store
+.DS_Store

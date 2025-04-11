@@ -5,8 +5,6 @@
   grid-template: 100% / 20% 50% 30%;
   min-height: 100vh;
 
-  // =============================
-
   .menu-bar {
     display: flex;
     align-items: center;
@@ -100,60 +98,51 @@
         padding-block: clamp(10px, 12px, 13px);
         width: clamp(300px, 33.32vw, 638px);
 
-        &:hover {
-          &::after {
-            transform: rotate(90deg);
-          }
+        .triangle {
+          position: relative;
+          top: 2px;
+          display: inline-block;
+          border: 5px solid transparent;
+          border-top: 7px solid var(--alt-white);
+          margin-right: clamp(10px, 15px, 20px);
+          transition: var(--transit);
+          rotate: 270deg;
         }
       }
+    }
+  }
 
-      &-btn::after {
-        content: "";
-        position: relative;
-        top: 2px;
-        display: inline-block;
-        border: 5px solid transparent;
-        border-top: 7px solid var(--alt-white);
-        margin-right: clamp(10px, 15px, 20px);
-        transition: var(--transit);
-        rotate: -90deg;
-      }
+  .status-loading {
+    font-family: var(--fon-fam);
+    font-size: var(--fon-size-34);
+    font-weight: var(--fon-weight);
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .working-time {
+    font-family: var(--fon-fam);
+    font-size: var(--fon-size-34);
+  }
+
+  .main-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid var(--black) var(--bor-width);
+    border-radius: var(--cir-bor-rad);
+    width: clamp(70px, 5.21vw, 120px);
+    aspect-ratio: 1;
+    background-color: transparent;
+    transition: var(--transit);
+
+    &:hover {
+      box-shadow: inset 0px 0px 10px var(--black);
     }
 
-    .status-loading {
-      font-family: var(--fon-fam);
-      font-size: var(--fon-size-34);
-      font-weight: var(--fon-weight);
-      text-align: center;
-      margin-bottom: 5px;
-    }
-
-    .working-time {
-      font-family: var(--fon-fam);
-      font-size: var(--fon-size-34);
-    }
-
-    .main-btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: solid var(--black) var(--bor-width);
-      border-radius: var(--cir-bor-rad);
-      width: clamp(70px, 5.21vw, 120px);
+    .switch {
+      width: clamp(18px, 1.3vw, 25px);
       aspect-ratio: 1;
-      background-color: transparent;
-      transition: var(--transit);
-
-      &:hover {
-        box-shadow: inset 0px 0px 10px var(--black);
-      }
-
-      .switch {
-        width: clamp(18px, 1.3vw, 25px);
-        aspect-ratio: 1;
-        background-image: url("../img/Switch.svg");
-        background-size: contain;
-      }
     }
   }
 }
@@ -182,8 +171,6 @@
   &-history {
     width: 34px;
     aspect-ratio: 1;
-    background-image: url("../img/History_Icon.svg");
-    background-size: contain;
     transition: var(--transit);
     margin-bottom: 10px;
 
@@ -209,12 +196,12 @@
   }
 
   &-bar::-webkit-scrollbar {
-    width: 6px; /* ширина scrollbar */
+    width: 6px;
   }
   &-bar::-webkit-scrollbar-thumb {
-    background-color: var(--border-color); /* цвет плашки */
-    border-radius: 20px; /* закругления плашки */
-    border: var(--bor-width) solid var(--black); /* padding вокруг плашки */
+    background-color: var(--border-color);
+    border-radius: 20px;
+    border: var(--bor-width) solid var(--black);
   }
 }
 

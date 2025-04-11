@@ -31,30 +31,29 @@ app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
 
-// Обработка запросов ARP
-
+// Универсальная обработка запросов для запуска Python-скриптов
 ipcMain.handle("python-run", (event, scriptPath) => {
   return new Promise((resolve, reject) => {
-    const pythonProcess = spawn("python", [scriptPath]);
+    const pythonProcess = spawn(scriptPath);
 
     let result = "";
     let error = "";
 
     // Получение данных из Python
     pythonProcess.stdout.on("data", (data) => {
-      result += data;
+      result += data.toString();
+    });
 
-      pythonProcess.stderr.on("data", (data) => {
-        error += data;
-      });
+    pythonProcess.stderr.on("data", (data) => {
+      error += data.toString();
+    });
 
-      pythonProcess.on("close", (code) => {
-        if (code !== 0 || error) {
-          reject(error || `Process exited with code ${code}`);
-        } else {
-          resolve(result);
-        }
-      });
+    pythonProcess.on("close", (code) => {
+      if (code !== 0 || error) {
+        reject(error || `Process exited with code ${code}`);
+      } else {
+        resolve(result);
+      }
     });
   });
 });

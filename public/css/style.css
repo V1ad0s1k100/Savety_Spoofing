@@ -310,11 +310,7 @@ svg * {
   padding-block: 12px;
   width: clamp(300px, 33.32vw, 638px);
 }
-.main .btn-main .nav-btn:hover::after {
-  transform: rotate(90deg);
-}
-.main .btn-main .nav-btn::after {
-  content: "";
+.main .btn-main .nav-btn .triangle {
   position: relative;
   top: 2px;
   display: inline-block;
@@ -322,20 +318,20 @@ svg * {
   border-top: 7px solid var(--alt-white);
   margin-right: 15px;
   transition: var(--transit);
-  rotate: -90deg;
+  rotate: 270deg;
 }
-.main .btn-main .status-loading {
+.main .status-loading {
   font-family: var(--fon-fam);
   font-size: var(--fon-size-34);
   font-weight: var(--fon-weight);
   text-align: center;
   margin-bottom: 5px;
 }
-.main .btn-main .working-time {
+.main .working-time {
   font-family: var(--fon-fam);
   font-size: var(--fon-size-34);
 }
-.main .btn-main .main-btn {
+.main .main-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -346,14 +342,12 @@ svg * {
   background-color: transparent;
   transition: var(--transit);
 }
-.main .btn-main .main-btn:hover {
+.main .main-btn:hover {
   box-shadow: inset 0px 0px 10px var(--black);
 }
-.main .btn-main .main-btn .switch {
+.main .main-btn .switch {
   width: clamp(18px, 1.3vw, 25px);
   aspect-ratio: 1;
-  background-image: url("../img/Switch.svg");
-  background-size: contain;
 }
 
 .logs {
@@ -374,8 +368,6 @@ svg * {
 .logs-history {
   width: 34px;
   aspect-ratio: 1;
-  background-image: url("../img/History_Icon.svg");
-  background-size: contain;
   transition: var(--transit);
   margin-bottom: 10px;
 }
@@ -397,12 +389,12 @@ svg * {
   display: block;
 }
 .logs-bar::-webkit-scrollbar {
-  width: 6px; /* ширина scrollbar */
+  width: 6px;
 }
 .logs-bar::-webkit-scrollbar-thumb {
-  background-color: var(--border-color); /* цвет плашки */
-  border-radius: 20px; /* закругления плашки */
-  border: var(--bor-width) solid var(--black); /* padding вокруг плашки */
+  background-color: var(--border-color);
+  border-radius: 20px;
+  border: var(--bor-width) solid var(--black);
 }
 
 @keyframes appearance_from_below {

@@ -13,14 +13,23 @@ historyElement.addEventListener("click", () => {
 
 const settingsBarElement = document.querySelector("[data-settings-bar]");
 const btnOpenConfigElement = document.querySelector("[data-nav-btn]");
+const btnOpenConfigTitleElement = document.querySelector(
+  "[data-nav-btn-title]"
+);
+const triangleBtnConfigElement = document.querySelector(
+  "[data-nav-btn-triangle]"
+);
+
 let btnOpenConfigCount = 0;
 
 btnOpenConfigElement.addEventListener("click", () => {
   if (btnOpenConfigCount % 2 === 0) {
     settingsBarElement.style.display = "flex";
     settingsBarElement.style.animation = "appearance_from_below 0.2s ease-out";
+    triangleBtnConfigElement.style.rotate = "360deg";
   } else {
     settingsBarElement.style.display = "none";
+    triangleBtnConfigElement.style.rotate = "270deg";
   }
   btnOpenConfigCount++;
 });
@@ -43,14 +52,18 @@ const mainBtn = document.querySelector("[data-main-btn]");
 
 arpSpoofingBtn.addEventListener("click", () => {
   mode = "ARP";
+  btnOpenConfigTitleElement.textContent = mode;
   settingsBarElement.style.display = "none";
   btnOpenConfigCount++;
+  triangleBtnConfigElement.style.rotate = "270deg";
 });
 
 dhcpSpoofingBtn.addEventListener("click", () => {
   mode = "DHCP";
+  btnOpenConfigTitleElement.textContent = mode;
   settingsBarElement.style.display = "none";
   btnOpenConfigCount++;
+  triangleBtnConfigElement.style.rotate = "270deg";
 });
 
 mainBtnElement.addEventListener("click", () => {
@@ -69,9 +82,9 @@ mainBtnElement.addEventListener("click", () => {
       dateElement.textContent = `${hours}:${minutes}:${secs}`;
     }, 1000);
 
-    loadingStatusElement.textContent = "There is an analysis";
+    // Добавить вывод ...
 
-    // Запускаем цикл вызовов Python-скрипта при нажатии кнопки
+    loadingStatusElement.textContent = "Анализ...";
 
     if (mode === "ARP") {
       arpCheck = setInterval(async () => {
@@ -98,16 +111,22 @@ mainBtnElement.addEventListener("click", () => {
       }, 1500);
     }
   } else {
-    clearInterval(arpCheck);
-    clearInterval(dhcpCheck);
+    if (mode === "ARP") {
+      clearTimeout(arpCheck);
+      arpCheck = null;
+    } else if (mode === "DHCP") {
+      clearTimeout(dhcpCheck);
+      dhcpCheck = null;
+    }
+
     clearInterval(timer);
-    arpCheck = null;
-    dhcpCheck = null;
     timer = null;
-    setTimeout(() => {
-      statusTitleElement.textContent = "";
-    }, 1550);
+    statusTitleElement.textContent = "";
     dateElement.textContent = "00:00:00";
-    loadingStatusElement.textContent = "Analysis stopped";
+    if (mode !== "") {
+      loadingStatusElement.textContent = "Анализ остановлен";
+    } else {
+      loadingStatusElement.textContent = "Выбирете тип защиты";
+    }
   }
 });
